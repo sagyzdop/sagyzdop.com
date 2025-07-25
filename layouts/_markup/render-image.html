@@ -1,0 +1,53 @@
+{{- $image := .Page.Resources.GetMatch (htmlUnescape .Destination | safeHTML) -}}
+
+{{- $baseStyle := "display: block; margin: auto;" -}}
+{{- $maxWidthStyle := "" -}}
+{{- $width100PercentStyle := "width: 100%;" -}}
+
+{{- if .Title -}}
+  {{- /* If .Title is provided, assume it's intended to be the max-width value. */ -}}
+  {{- $maxWidthStyle = printf "max-width: %s;" (.Title) -}}
+{{- end -}}
+
+{{- /* Initialize a slice to build the style attributes */ -}}
+{{- $styleAttrs := slice $baseStyle -}}
+
+{{- /* Check if a resource was found AND if it's specifically an 'image' resource type. */ -}}
+{{ if and $image (eq $image.ResourceType "image") }}
+  {{ if eq $image.MediaType.SubType "svg" }}
+    {{/* Handle SVG images: baseStyle + maxWidthStyle (if any) */}}
+    {{- if $maxWidthStyle -}}
+      {{- $styleAttrs = $styleAttrs | append $maxWidthStyle -}}
+    {{- end -}}
+    <img
+      src="{{ .Destination | safeHTML }}"
+      alt="{{ .Text }}"
+      style="{{ delimit $styleAttrs " " | safeCSS }}" />
+  {{ else }}
+    {{/* Handle Raster images (JPG, PNG, GIF, etc.) or any other non-SVG image type.
+      This branch will catch JPEGs as they are image resources but not SVG.
+    */}}
+    {{- /* Add width: 100% for raster images */ -}}
+    {{- $styleAttrs = $styleAttrs | append $width100PercentStyle -}}
+    {{- /* Add max-width if title provided */ -}}
+    {{- if $maxWidthStyle -}}
+      {{- $styleAttrs = $styleAttrs | append $maxWidthStyle -}}
+    {{- end -}}
+    <img
+      src="{{ .Destination | safeHTML }}"
+      alt="{{ .Text }}"
+      width="{{ $image.Width }}"
+      height="{{ $image.Height }}"
+      style="{{ delimit $styleAttrs " " | safeCSS }}" />
+  {{ end }}
+{{ else }}
+  {{- $styleAttrs = $styleAttrs | append $width100PercentStyle -}}
+  {{- /* Add max-width if title provided */ -}}
+  {{- if $maxWidthStyle -}}
+    {{- $styleAttrs = $styleAttrs | append $maxWidthStyle -}}
+  {{- end -}}
+  <img
+    src="{{ .Destination | safeHTML }}"
+    alt="{{ .Text }}"
+    style="{{ delimit $styleAttrs " " | safeCSS }}" />
+{{ end }}

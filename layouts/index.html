@@ -1,0 +1,141 @@
+{{ define "main" }}
+  {{ $hero := .Params.hero }}
+  {{ if $hero.enable }}
+    <section id="hero" class="section bg-light dark:bg-darkmode-light">
+      <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+          <!-- left -->
+          <div class="text-center lg:text-right order-last md:order-first">
+            <p class="text-lg mb-2 text-gray-600 dark:text-gray-400">
+              {{ $hero.intro }}
+            </p>
+            <h1
+              class="text-h2 lg:text-h1 font-bold mb-4 text-text-dark dark:text-white">
+              {{ $hero.title }}
+            </h1>
+            <h2
+              class="text-h4 lg:text-h3 mb-6 text-gray-500 dark:text-gray-300">
+              {{ $hero.subtitle }}
+            </h2>
+            {{/*  <p class="text-lg mb-2 text-gray-600 dark:text-gray-400">
+              {{ $hero.content | markdownify }}
+            </p>  */}}
+            {{ with $hero.button }}
+              {{ if .enable }}
+                <a
+                  href="{{ .url }}"
+                  class="btn btn-primary"
+                  {{ if .download }}download{{ end }}
+                  {{ if .newPage }}target="_blank"{{ end }}>
+                  {{ .name }}
+                </a>
+              {{ end }}
+            {{ end }}
+          </div>
+          <div class="flex flex-col items-center lg:items-start order-first md:order-last">
+            {{ partial "image" (dict "Src" $hero.image "Alt" "Banner image" "Loading" "eager" "Class" "relative w-60 h-60 rounded-full" ) }}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+
+  <!-- ========== ABOUT ================================================== -->
+  {{ $about := .Params.about | default .Site.Params.about }}
+  {{ if $about.enable }}
+    <section
+      id="about"
+      class="section from-body to-light dark:from-darkmode-body dark:to-darkmode-light bg-gradient-to-t">
+      <div class="container">
+        <h2 class="text-center mb-6">{{ $about.title }}</h2>
+        <div class="flex flex-col items-center justify-center">
+          <div class="mb-6">
+            <ul class="social-icons">
+              {{ range site.Data.social.main }}
+                <li>
+                  <a
+                    target="_blank"
+                    aria-label="{{ .name }}"
+                    rel="nofollow noopener"
+                    href="{{ .link | safeURL }}">
+                    <i class="{{ .icon }}"></i>
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+          <div class="text-center md:col-8">
+            {{ $about.content | markdownify }}
+            {{ if $about.skills.enable }}
+              <h4 class="mt-8 mb-3">{{ $about.skills.title }}</h4>
+              <ul>
+                {{ range $about.skills.items }}
+                  <li>{{ . }}</li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+
+  <!-- ========== FEATURED POSTS ===================== -->
+  {{ $featured_posts := .Params.featured_posts }}
+  {{ if $featured_posts.enable }}
+    {{ $featured := where (where site.RegularPages "Section" "blog") "Params.featured" true }}
+    {{ if ge (len $featured) 1 }}
+      <section id="featured-posts" class="section ">
+        <div class="container">
+          <div class="row">
+            <!-- Section Title -->
+            <div class="md:col-10 lg:col-8 xl:col-6 mx-auto mb-12 text-center">
+              <h2 class="mb-4">
+                {{ $featured_posts.title | markdownify }}
+              </h2>
+            </div>
+            <!-- Carousel -->
+            <div class="col-12">
+              <div class="swiper-container">
+                <div class="swiper featured-posts-slider">
+                  <div class="swiper-wrapper">
+                    {{ range $featured }}
+                      <!-- Each post is a slide -->
+                      <div class="swiper-slide">
+                        {{ partial "components/blog-card" . }}
+                      </div>
+                    {{ end }}
+                  </div>
+                  <div
+                    class="featured-posts-slider-pagination mt-9 flex
+                    items-center justify-center text-center"></div>
+                </div>
+                <div class="!hidden lg:!flex swiper-button-prev"></div>
+                <div class="!hidden lg:!flex swiper-button-next"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+
+
+  <!-- ========== CONTACT ================================================= -->
+  {{ $contact := .Params.contact | default .Site.Params.contact }}
+  {{ if $contact.enable }}
+    <section
+      id="contact"
+      class="section from-body to-light dark:from-darkmode-body dark:to-darkmode-light bg-gradient-to-b">
+      <div class="container text-center max-w-3xl">
+        <h2 class="mb-5">{{ $contact.title | default "Get in Touch" }}</h2>
+        <p class="mb-8">{{ $contact.content | markdownify }}</p>
+        <a href="{{ $contact.btnLink }}" class="btn btn-primary"
+          >{{ $contact.btnName }}</a
+        >
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

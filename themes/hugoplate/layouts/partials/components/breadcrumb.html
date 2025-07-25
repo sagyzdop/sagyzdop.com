@@ -1,27 +1,77 @@
 {{ $context := .Context }}
 {{ $class := .Class }}
-{{ $base := site.Home.Permalink }}
-
+{{/* $base := site.Home.Permalink - can use "/" | relURL directly */}}
 
 <ul class="{{ $class }} inline-flex space-x-1 capitalize">
   <li>
-    <a class="text-primary dark:text-darkmode-primary" href="{{ $base }}">
+    <a class="text-primary dark:text-darkmode-primary" href="{{ "/" | relURL }}">
       {{ T "home" | default "Home" }}
     </a>
     <span class="inlin-block mr-1">/</span>
   </li>
-  {{ range $i, $e:= $context.Ancestors.Reverse }}
-    {{ if and (not .IsHome) (ne .Title "Pages") }}
+
+  {{/* Get the "Blog" section page */}}
+  {{ $blogSectionPage := site.GetPage "section" "blog" }}
+  {{/* Get the "Categories" taxonomy list page */}}
+  {{ $categoriesListPage := site.GetPage "taxonomyTerm" "categories" }}
+
+  {{/* Add "Blog" link if the current page is within the "blog" section */}}
+  {{ if and (eq $context.Section "blog") ($blogSectionPage) }}
+    {{/* Only add if the current page isn't the main blog page itself,
+         to prevent duplication (the last <li> will cover the main blog page title). */}}
+    {{ if not (eq $context.Permalink $blogSectionPage.Permalink) }}
       <li>
-        <a
-          class="text-primary dark:text-darkmode-primary"
-          href="{{ .RelPermalink }}">
-          {{ T (printf "%s" (lower .Title)) | default .Title }}
+        <a class="text-primary dark:text-darkmode-primary" href="{{ $blogSectionPage.RelPermalink }}">
+          {{ T "blog" | default "Blog" }}
         </a>
         <span class="inlin-block mr-1">/</span>
       </li>
     {{ end }}
   {{ end }}
+
+  {{/* Add "Categories" link if the current page is a category term or the main categories list */}}
+  {{ if and (eq $context.Type "categories") ($categoriesListPage) }}
+    {{/* Only add if the current page isn't the main categories list page itself,
+         and it's not already covered by the blog section being the parent.
+         We also ensure it's not the actual blog section page. */}}
+    {{ if and (not (eq $context.Permalink $categoriesListPage.Permalink)) (not (eq $context.Permalink $blogSectionPage.Permalink)) }}
+      <li>
+        <a class="text-primary dark:text-darkmode-primary" href="{{ $categoriesListPage.RelPermalink }}">
+          {{ T "categories" | default "Categories" }}
+        </a>
+        <span class="inlin-block mr-1">/</span>
+      </li>
+    {{ end }}
+  {{ end }}
+
+
+  {{/* Iterate through remaining ancestors.
+       We filter out Home, and the explicit "Blog" and "Categories" pages
+       to prevent any potential duplicates if they happen to appear in Ancestors.
+       This makes the loop robust. */}}
+  {{ range $i, $e:= $context.Ancestors.Reverse }}
+    {{ if and (not .IsHome) (ne .Title "Pages") }}
+      {{ $isExplicitlyAdded := false }}
+      {{ if $blogSectionPage }}
+        {{ if eq .Permalink $blogSectionPage.Permalink }}{{ $isExplicitlyAdded = true }}{{ end }}
+      {{ end }}
+      {{ if $categoriesListPage }}
+        {{ if eq .Permalink $categoriesListPage.Permalink }}{{ $isExplicitlyAdded = true }}{{ end }}
+      {{ end }}
+
+      {{ if not $isExplicitlyAdded }}
+        <li>
+          <a
+            class="text-primary dark:text-darkmode-primary"
+            href="{{ .RelPermalink }}">
+            {{ T (printf "%s" (lower .Title)) | default .Title }}
+          </a>
+          <span class="inlin-block mr-1">/</span>
+        </li>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
   <li>
     <span class="text-primary dark:text-darkmode-primary">
       {{ T (printf "%s" (lower $context.Title)) | default $context.Title }}

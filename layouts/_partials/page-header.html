@@ -1,0 +1,9 @@
+<section>
+  <div class="text-center">
+    <div
+      class="from-body to-light dark:from-darkmode-body dark:to-darkmode-light bg-gradient-to-t pt-19">
+      <h1>{{ T (printf "%s" (lower .Title)) | default .Title | title }}</h1>
+      {{ partial "components/breadcrumb" (dict "Context" . "Class" "mt-6") }}
+    </div>
+  </div>
+</section>

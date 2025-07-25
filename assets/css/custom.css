@@ -1,1 +1,53 @@
-/* Add your own custom styles here */
+@tailwind components;
+
+@layer components {
+  .content {
+    @apply prose-code:p-1 prose-code:bg-light dark:prose-code:bg-darkmode-light dark:prose-code:text-darkmode-text-light;
+    @apply prose-li:text-base;
+    @apply prose-blockquote:rounded-none prose-blockquote:italic prose-blockquote:py-4 prose-blockquote:border-y-0 prose-blockquote:border-r-0;
+    @apply prose-table:text-base prose-table:rounded-none;
+  }
+}
+.content pre code {
+  @apply p-0 bg-transparent text-inherit;
+}
+
+.table-of-content {
+  @apply rounded-none;
+}
+
+:root {
+  --swiper-navigation-color: light dark: darkmode-light;
+  --font-primary:
+    system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-secondary:
+    system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+blockquote p::before,
+p::after {
+  content: none;
+}
+
+code::before,
+code::after {
+  content: none;
+}
+
+pre::before,
+pre::after {
+  content: none;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+.swiper-container {
+  position: relative;
+}
+.swiper {
+  max-width: 90%;
+}
