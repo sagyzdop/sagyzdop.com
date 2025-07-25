@@ -55,3 +55,9 @@ I believe no matter if you want it or not – answering the **questions** is cru
 You get the gist from my writing above. Aside from that, I'll probably be posting anything that I find relevant in general. Take a look if you are interested, and if you disagree or have something to add – your comment (in any language) is greatly appreciated! That's all it is for this blog.
 
 Thank you for reading!
+
+---
+
+#### P.S.
+
+This is the third revision of this website. [The first one](https://github.com/sagyzdop/Pure-PHP-Blog) was my first real experience with the web. Second one was with Jekyll on GitHub Pages. The current one is made using [HUGO](https://gohugo.io), and the [Hugoplate theme](https://github.com/zeon-studio/hugoplate).

@@ -19,3 +19,8 @@ yarn.lock
 
 .devcontainer
 .vscode
+
+.editorconfig
+.jshinrc
+.markdownlint.json
+.prettierrc

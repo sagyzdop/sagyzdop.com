@@ -1,0 +1,41 @@
+<div class="bg-light dark:bg-darkmode-light p-5 rounded-lg">
+  {{ $image:= .Params.image }}
+  {{ if $image }}
+  <a href="{{ .RelPermalink }}">
+    {{ partial "image" (dict "Src" $image "Context" .Page "Alt" .Title "Class" "mb-6 rounded") }}
+  </a>
+  {{ end }}
+  <h4 class="mb-3">
+    <a href="{{ .RelPermalink }}">
+      {{ .Title }}
+    </a>
+  </h4>
+  {{ $categories:= .Params.categories }}
+  {{ if $categories }}
+    <ul class="mb-4">
+      {{/*  <li class="mr-4 inline-block">
+        <i class="fa-regular fa-circle-user mr-2"></i>{{ .Params.author }}
+      </li>  */}}
+      <li class="mr-4 inline-block">
+        <i class="fa-regular fa-folder mr-1"></i>
+        {{ range $i,$p:= $categories }}
+        <a
+        href="{{ `/blog/categories/` | relLangURL }}{{ . | urlize | lower }}/"
+        class="ms-1"
+        >{{ .  }}{{ if ne $i (sub (len $categories) 1) }}
+        {{ "," }}
+        {{ end }}
+      </a>
+      {{ end }}
+    </li>
+    <li class="mr-4 inline-block">
+      <i class="fa-regular fa-clock mr-2"></i>
+      {{ time.Format ":date_long" .PublishDate }}
+    </li>
+    </ul>
+  {{ end }}
+  <p class="mb-6">{{ .Params.description | plainify }}</p>
+  <a class="btn btn-outline-primary btn-sm" href="{{ .RelPermalink }}">
+    {{ T "read_more" }}
+  </a>
+</div>

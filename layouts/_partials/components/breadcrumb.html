@@ -1,0 +1,84 @@
+{{ $context := .Context }}
+{{ $class := .Class }}
+{{/* The original $base variable is not strictly needed anymore,
+  as we use "/" | relURL directly.
+*/}}
+
+
+<ul class="{{ $class }} inline-flex space-x-1 capitalize">
+  <li class="inline-block">
+    {{/* Added inline-block to li for robust horizontal display */}}
+    <a
+      class="text-primary dark:text-darkmode-primary"
+      href="{{ "/" | relURL }}">
+      {{ T "home" | default "Home" }}
+    </a>
+    <span class="inlin-block mr-1">/</span>
+  </li>
+
+  {{ $reTrimmedRelPermalink := $context.RelPermalink | replaceRE "(^/|/$)" "" }}
+  {{ $segments := split $reTrimmedRelPermalink "/" }}
+  {{ $currentPath := "" }}
+
+  {{ range $index, $segment := $segments }}
+    {{ if ne $segment "" }}
+      {{/* Ensure segment is not empty */}}
+      {{ $currentPath = printf "%s/%s" $currentPath $segment }}
+      {{ $isLastSegment := eq (add $index 1) (len $segments) }}
+
+      {{ $displayTitle := "" }}
+      {{ $segmentLink := $currentPath | relURL }}
+
+      {{/* Determine the display title based on the segment */}}
+      {{ if eq $segment "blog" }}
+        {{ with site.GetPage "section" "blog" }}
+          {{ $displayTitle = .Title | default (T "blog" | default "Blog") }}
+        {{ else }}
+          {{ $displayTitle = T "blog" | default "Blog" }}
+        {{ end }}
+      {{ else if eq $segment "categories" }}
+        {{ with site.GetPage "taxonomyTerm" "categories" }}
+          {{ $displayTitle = .Title | default (T "categories" | default "Categories") }}
+        {{ else }}
+          {{ $displayTitle = T "categories" | default "Categories" }}
+        {{ end }}
+      {{ else if eq $segment "tags" }}
+        {{ with site.GetPage "taxonomyTerm" "tags" }}
+          {{ $displayTitle = .Title | default (T "tags" | default "Tags") }}
+        {{ else }}
+          {{ $displayTitle = T "tags" | default "Tags" }}
+        {{ end }}
+      {{ else }}
+        {{/* For other segments (like post slugs or term slugs),
+          try to get the page title if a page exists at that path,
+          otherwise, format the slug.
+        */}}
+        {{ with site.GetPage $currentPath }}
+          {{ $displayTitle = .Title | default ($segment | replace "-" " " | title) }}
+        {{ else }}
+          {{ $displayTitle = $segment | replace "-" " " | title }}
+        {{ end }}
+      {{ end }}
+
+      {{/* If this is the last segment, it's the current page's title, not a link */}}
+      {{ if $isLastSegment }}
+        <li class="inline-block">
+          {{/* Added inline-block to li */}}
+          <span class="text-primary dark:text-darkmode-primary">
+            {{ $context.Title | default ($displayTitle) }}
+          </span>
+        </li>
+      {{ else }}
+        <li class="inline-block">
+          {{/* Added inline-block to li */}}
+          <a
+            class="text-primary dark:text-darkmode-primary"
+            href="{{ $segmentLink }}">
+            {{ $displayTitle }}
+          </a>
+          <span class="inlin-block mr-1">/</span>
+        </li>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</ul>
