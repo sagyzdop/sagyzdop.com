@@ -3,7 +3,7 @@ title: "Analysis of Algorithms: Asymptotic Notations"
 meta_title: "Analysis of Algorithms: Asymptotic Notations"
 description: "Comprehensive explanation of Big-O, Big-Ω and Big-Θ notations (and the little ones)."
 date: 2025-01-20T12:12:12Z
-# image: "images/Runtime-to-Input-Size-Graph.png"
+image: "/images/thumbnail.svg"
 categories: ["Computer Science"]
 author: "Bakhtiyar Yesbolsyn"
 tags: ["Algorithms"]

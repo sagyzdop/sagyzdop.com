@@ -3,7 +3,7 @@ title: "Sorting Algorithms"
 meta_title: "Sorting Algorithms"
 description: "My attempt on sorting out the sorts."
 date: 2024-12-25T12:12:12Z
-# image: "/images/image-placeholder.png"
+image: "/thumbnail.svg"
 categories: ["Computer Science"]
 author: "Bakhtiyar Yesbolsyn"
 tags: ["Data structures", "Algorithms"]

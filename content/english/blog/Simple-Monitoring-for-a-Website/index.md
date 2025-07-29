@@ -102,7 +102,7 @@ Here is a schematic of a whole monitoring system:
 
 ![Monolith compose](images/Monolith_compose.svg)
 
-> [Open in a new tab](https://blog.sagyzdop.com/images/Monolith_compose.svg) to take a closer look.
+> [Open in a new tab](images/Monolith_compose.svg) to take a closer look.
 
 This schematic actually displays the contents of the Docker Compose file deployed at our production server (`prod.docker-compose.yaml`). Each block (except the Google Cloud Storage) is a service inside this compose file. The utility services like RabbitMQ and Redis are omitted from the schematic for better readability, and only the FastAPI application service and NGINX reverse proxy service are present. Notice that the whole monitoring implementation requires only 5 additional services added to Docker Compose – Grafana Alloy, Prometheus, Alertmanager, Grafana, and Loki.
 

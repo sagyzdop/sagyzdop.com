@@ -3,7 +3,7 @@ title: "Pumping Lemma"
 meta_title: "Pumping Lemma"
 description: "Explanation of the Pumping Lemma for Regular Languages and Context-Free Languages with example proofs."
 date: 2025-01-30T12:12:12Z
-# image: "/images/image-placeholder.png"
+image: "/thumbnail.svg"
 categories: ["Computer Science"]
 author: "Bakhtiyar Yesbolsyn"
 tags: ["Formal languages"]
