@@ -3,7 +3,7 @@ title: "Familia"
 meta_title: "Family"
 description: "Parla più piano e nessuno sentirà, il nostro amore lo viviamo io e te. Nessuno sa la verità, Nemmeno il cielo che ci guarda da lassù."
 date: 2026-01-05T01:01:01Z
-image: "/images/thumbnail.jpg"
+image: "/images/thumbnail.svg"
 categories: ["Personal"]
 author: "Bakhtiyar Yesbolsyn"
 tags: []
