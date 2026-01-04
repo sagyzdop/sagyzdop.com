@@ -253,7 +253,7 @@ But it's not like I don't want a father and a mother. A family. To be honest, I 
 
 If I could choose between this family, with everything ending up exactly like it did, or no family at all, I'd still choose being raised by my parents.
 
-I don't wish any harm to these people. If anything, I'm the one who wishes them well the most.
+I don't wish any harm to these people. If anything, I'm the one who wishes them well the most. I don't hate them, or have any kind of resentment againts them. I am biologically hard wired to love them, and I do.
 
 The only thing I'm afraid of is someone dying. Or getting severe depression and then dying. I expect someone killing themselves, or each other. As they get older and crazier, paired with lifelong drinking and stress and all that, the odds of that happening get higher.
 
@@ -283,16 +283,16 @@ Which roughly translates to "Life ain't hard if you don't make it hard." This ha
 
 Happy New Year and Jingle Bells!
 
-[^1]: I got a long history of writing long ass texts and my friends joke about it.
-[^2]: I also never ask for help, even from my closest friends. It's not like I choose not to. I don't even have such a thought. If it is something I can do myself, I usually do it myself. Or maybe it's not that deep, and the reason I don't ask for help is that I've never really faced any "real problem" yet.
+[^1]: I have a long history of writing long ass texts, and my friends joke about it.
+[^2]: I also never ask for help, even from my closest friends. It's not like I decide not to. I literally don't even have the thought. If it is something I can do myself, I do it. Or maybe it's not that deep and I've just never faced a "real problem" yet.
 [^3]: Except for motorcycles because allegedly his father died in a motorcycle accident.
 [^4]: I remember an episode from my early childhood, even before smartphones were a thing, when he took my scrambled Rubik's cube, went into the bedroom for three hours, and came out with a solved one! Well, of course, there's a chance that he took a nap for three hours and just disassembled and assembled it back, but the magic was there, and the impression he made stuck with me to this day.
 [^5]: Pun intended, but I really was about that age.
-[^6]: It happened when I was in 9th grade. I remember it because I had a depression. Boo-hoo me, but it greatly affected me, and I nearly lost all my friends. The table didn't cause it, but it sure as hell contributed.
+[^6]: It happened when I was in 9th grade. I remember it because I was depressed. Boo-hoo me, but it fucked me up and I nearly lost all my friends. The table didn't cause it, but it sure as hell contributed.
 [^7]: My dad had a funny story happen to him when he was on a train. One dude got drunk and got into a fight with his wife. He was about to hit her, and my dad allegedly stood up to protect her, hitting this dude. The funny part here is not the irony of my dad protecting a woman from a wife-beater. It is the wife who asked for help, screaming, "He is hitting my husband!" So it's kinda questionable whether you should step in or not.
 [^8]: For the record, I am not gay. Nothing wrong with being gay.
 [^9]: I am not that academically gifted, though. Good thing that I didn't feel any pressure on that front, because after some initial supervision in the first grade, my parents had nothing to do with how I studied. I did well enough for them not be involved and worried.
-[^10]: Recently we won some money in a hackathon. I gave my part to my father as a birthday present. Then I got a message of approval via my mother. This was after he commented on my earring, so it meant something for me. It felt like the ultimate achievement for me. What I realized from that single forwarded WhatsApp message was the fact that there is a "better way" of gaining confidence for a man – your father's approval.
+[^10]: Recently we won some money in a hackathon. I gave my part to my father as a birthday present. Then I got a message of approval via my mother. This was after he commented on my earring, so I felt like I claimed myself back. It felt like the ultimate achievement. What I realized from that single forwarded WhatsApp message was the fact that there is a "better way" of gaining confidence for a man – your father's approval.
 [^11]: Interestingly, that was all me, because she never conditioned us against him. She kept his authority. Even if she was upset with him, it was all between the two of them.
 [^12]: I have a very strange relationship with money. For the period that I am studying here, I am getting more than enough. I hear the folks around me say things like "I have to work because I can't ask my family" or whatnot, but I actually don't want that. And it's not because I love mooching off my parents. My father's money is the last connection I have with him. If I get financially independent, I would lose it. It is a ridiculous situation.
 [^13]: I have been doing it since I was about 12. I even have some old notes still with me.
