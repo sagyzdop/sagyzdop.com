@@ -279,7 +279,7 @@ Another thing is that I probably won't get the chance to express my thoughts or 
 
 > Өмірді қиындатпасаң, қиын емес.
 
-Which roughly translates to "Life ain't hard if you don't make it hard." This has been my motto for quite a while now. For me, this situation doesn't carry any emotional load anymore. It's just a fact now. I don't suffer from it. I just have it. The ultimate reason I am posting this after all is that I don't want to tell this story ever again.
+Which roughly translates to "Life ain't hard if you don't make it hard." This has been my motto for quite a while now. For me, this situation doesn't carry any emotional load anymore. It's just a fact now. I don't suffer from it. I just have it. The ultimate reason I am posting this after all is that I don't want to tell this story ever again. I don't want it to affect my life, the relationships I have, the plans I make, the words I say, пэпэ, шнейне...
 
 Happy New Year and Jingle Bells!
 
