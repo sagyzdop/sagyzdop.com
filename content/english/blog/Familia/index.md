@@ -2,7 +2,7 @@
 title: "Familia"
 meta_title: "Family"
 description: "Parla più piano e nessuno sentirà, il nostro amore lo viviamo io e te. Nessuno sa la verità, Nemmeno il cielo che ci guarda da lassù."
-date: 2026-01-05T01:01:01Z
+date: 2026-01-05T00:01:01Z
 image: "/images/thumbnail.svg"
 categories: ["Personal"]
 author: "Bakhtiyar Yesbolsyn"
@@ -115,7 +115,7 @@ Even among the most educated, well-spoken, and smart people in this country, I w
 
 I don't see the birth of a child as something magical. It's not a blessing or a miracle. It's just biology. I was born at 8 months (allegedly), and lived in an incubator for the rest of it. I like to joke about my will to live and take pride in it because the technology was so relatively new, the reported survival rate was low, and this was on the outskirts of Kazakhstan in the mid-2000s. I made that fact part of my identity.
 
-I am kinda upset at my mom because I had a shit ton of health problems at the start, but I'm thankfully pretty healthy now. To her credit, the ones that came after me out of that woman were all totally healthy and strong, which I am happy for. 
+I am kinda upset at my mom because I had a shit ton of health problems at the start, but I'm thankfully pretty healthy now. To her credit, the ones that came after me out of that woman were all totally healthy and strong, which I am happy for.
 
 My sister got the most beautiful features, while my brothers are just my clones. My youngest brother turned one a month ago, and judging by the photos I've seen, he is an absolute unit. As a matter of fact, all my siblings are the tallest and biggest among their peers, and I am not on the small side either. I won't be surprised if I end up being the shortest of them all in 20 years. My mom is kinda badass for that, gotta give her that.
 
@@ -123,7 +123,7 @@ My sister got the most beautiful features, while my brothers are just my clones.
 
 For a long time, I was on my mother's side, trying to protect her from my "terrible" father.[^11] But at some point, I started to question if she really was a victim in this situation.
 
-She let him drink even though she knew what would happen at home. You would think she couldn't prohibit him from drinking, and maybe she couldn't. But at home, there were theatrics like she had a spare life in her pocket. 
+She let him drink even though she knew what would happen at home. You would think she couldn't prohibit him from drinking, and maybe she couldn't. But at home, there were theatrics like she had a spare life in her pocket.
 
 There were moments she willingly confronted my father, even though it was clear that it would get her beaten. She's the one who kept letting this happen over and over again, even though it was clear that it was not going to change. And she kept telling the lie that this is okay. That lie is a big part of why I was so confused about how to feel about it.
 
