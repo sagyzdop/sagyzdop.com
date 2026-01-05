@@ -277,7 +277,7 @@ To find the truth, you have to look at things at face value, stripped of moral j
 
 Another thing is that I probably won't get the chance to express my thoughts or ask those questions. And even if I get a chance to talk to them, I don't think I could get through to them.
 
-> Өмірді қиындатпасаң, қиын емес.
+> Өмірді қиындатпасаң – қиын емес.
 
 Which roughly translates to "Life ain't hard if you don't make it hard." This has been my motto for quite a while now. For me, this situation doesn't carry any emotional load anymore. It's just a fact now. I don't suffer from it. I just have it. The ultimate reason I am posting this after all is that I don't want to tell this story ever again. I don't want it to affect my life, the relationships I have, the plans I make, the words I say, пэпэ, шнейне...
 
