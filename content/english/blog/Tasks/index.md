@@ -1,6 +1,6 @@
 ---
-title: "Familia"
-meta_title: "Solution"
+title: "Tasks"
+meta_title: "Tasks"
 description: ""
 date: 2026-03-03T00:01:01Z
 # image: "/images/thumbnail.svg"
@@ -10,6 +10,8 @@ tags: []
 draft: false
 featured: false
 ---
+
+Development task 2 and network task 3 were fully implemented, others are only explained. The source code for implemented tasks are on [GitHub](https://github.com/sagyzdop/Tasks).
 
 ## Development Tasks
 
