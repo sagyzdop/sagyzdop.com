@@ -225,7 +225,7 @@ At the end, it prints a list of successful strategies for IPv4 and IPv6.
 
 At this step I stopped, because it is about configuration shenanigans which don't directly relate to the matter. But I verified that it is working by visiting the default domain that it opens `rutracker.org`:
 
-![rutracker.org](images/rutracker.png)
+![rutracker.org](images/rutracker.jpeg)
 
 ### Task 3 – Custom TAP‑Based Filter
 
@@ -261,7 +261,7 @@ To complete this task I used a VM, namely Ubuntu on VMware Fusion with default N
 4. Mac's physical network interface – the actual hardware that connects my Mac to my local network and the internet
 5. Internet
 
-![info](images/info.png)
+![info](images/info.jpeg)
 
 - **`default`** – this tells that this is the **default route**. It is kind of a catch-all route that the machine sends packets too if there is no record in its routing table with that destination address.
 - **`via 192.168.25.2`** – that's the **gateway IP address**. It's the next‑hop router that your VM uses to reach the internet. In my VMware setup, this is the virtual NAT device running on my Mac.
@@ -293,7 +293,7 @@ sudo ip netns exec myns ip link set veth1 up
 sudo ip netns exec myns ip link set lo up   # loopback
 ```
 
-![1](images/1.png)
+![1](images/1.jpeg)
 
 8. Add a default route inside the namespace with `sudo ip netns exec myns ip route add default via 10.0.1.1 # set default route`
 9. Enable IP forwarding on the host (Ubuntu virtual machine) with `echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward`
@@ -312,7 +312,7 @@ ping -c 2 10.0.1.2    # from VM to the namespace
 sudo ip netns exec myns ping -c 2 1.1.1.1    # from namespace
 ```
 
-![2](images/2.png)
+![2](images/2.jpeg)
 
 #### Part 2
 
@@ -363,15 +363,15 @@ sudo ip netns exec myns curl -v https://example.com
 
 Blocking `wikipedia.com`:
 
-![3](images/3.png)
+![3](images/3.jpeg)
 
 But working on others:
 
-![4](images/4.png)
+![4](images/4.jpeg)
 
 The program's output:
 
-![5](images/5.png)
+![5](images/5.jpeg)
 
 Source code for the Python program is on [GitHub](https://github.com/sagyzdop/Tasks).
 
