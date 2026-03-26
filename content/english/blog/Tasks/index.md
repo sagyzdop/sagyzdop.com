@@ -7,7 +7,7 @@ date: 2026-03-03T00:01:01Z
 categories: ["Personal"]
 author: "Bakhtiyar Yesbolsyn"
 tags: []
-draft: false
+draft: true
 featured: false
 math: true
 ---

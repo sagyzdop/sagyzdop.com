@@ -11,13 +11,13 @@ draft: false
 featured: true
 ---
 
-Okay, let’s continue our journey through this existential crisis. Recall the example with Harry Potter and God from the [previous article](../../../2024/10/19/Are-You-Real.html). 
+Okay, let’s continue our journey through this existential crisis. Recall the example with Harry Potter and God from the [previous article](https://sagyzdop.com/blog/are-you-real/).
 
 ![Harry Potter and God](images/Harry_Potter_and_God.png)
 
 > Everything that you can possibly think of – exists, but might not be real.
 
-The most crucial take from this is that we made the distinction between existing and being real. For something to be real for both of us, it has to exist AND be a part of both of our realities. However, keep in mind that what we described as **Ultimate Objective Reality** cannot be reached. 
+The most crucial take from this is that we made the distinction between existing and being real. For something to be real for both of us, it has to exist AND be a part of both of our realities. However, keep in mind that what we described as **Ultimate Objective Reality** cannot be reached.
 
 Now, what does the reality that is **real for both of us** look like? In other words:
 
@@ -31,7 +31,7 @@ Now, what does the reality that is **real for both of us** look like? In other w
 
 **Laws of Physics.** Third – we cannot control nature. Laws of physics are true regardless of our opinion, even our existence. We weren’t flying around in space before an apple fell on the head of Newton. You are going to fall down and die if you jump from a plane without a parachute. Always. Even if you believe you can fly.
 
-Surprisingly, this is all we need. Now if we agree on all of the above, the next question to ask is how can we get the best description of the world with all of these elements in it? In other words: 
+Surprisingly, this is all we need. Now if we agree on all of the above, the next question to ask is how can we get the best description of the world with all of these elements in it? In other words:
 
 > What is the best explanation for the things that happen in reality constituted by these elements?
 
@@ -49,7 +49,7 @@ In this sense, a theological theory about the world is a valid, testable one, bo
 
 ### Is Ultimate
 
-The first problem I find in traditional religions is that they claim to be the ULTIMATE truth about the world. They are based on universal statements that fall apart upon closer inspection and lead to contradictions within themselves. 
+The first problem I find in traditional religions is that they claim to be the ULTIMATE truth about the world. They are based on universal statements that fall apart upon closer inspection and lead to contradictions within themselves.
 
 ![Epicurean Paradox](images/Epicurean_paradox.png)
 
@@ -67,7 +67,7 @@ Despite all these problems, the simplicity and spiritual power of theological th
 
 Ever since being introduced to physics in seventh grade I developed a physicalist view of reality. I remember being fascinated by the kinetic theory of gasses according to which temperature is nothing more than the sum of kinetic energies of the molecules. It appeared to me that physics is the most straightforward explanation for everything that ever happens in nature.[^1]
 
-A system being nothing more than the sum of its parts is known as reductionism and I assume that this is true. From this assumption I define physicalism as a theory that claims that the common reality is fully reducible to physics. Both of these are reasonably highly debatable. So then why physicalism? 
+A system being nothing more than the sum of its parts is known as reductionism and I assume that this is true. From this assumption I define physicalism as a theory that claims that the common reality is fully reducible to physics. Both of these are reasonably highly debatable. So then why physicalism?
 
 > Because it just works the best.
 
@@ -83,7 +83,7 @@ Physicalism is a theory that **works** within the boundaries of the common reali
 
 ## Can Science Find An Answer?
 
-The focus of modern physics for the last century was finding the theory of everything – a unifying, final theory with which we could explain everything, and possibly answer the Ultimate Question asked in the first article: 
+The focus of modern physics for the last century was finding the theory of everything – a unifying, final theory with which we could explain everything, and possibly answer the Ultimate Question asked in the first article:
 
 > **Why is there something rather than nothing?**
 
@@ -93,7 +93,7 @@ But there is a problem: even if such a theory exists, it would require infinite 
 
 Moreover, the uncertainty principles of quantum mechanics mean that some things, like the exact position and momentum of a particle, can’t be known at the same time. Chaos theory adds more unpredictability, making it impossible to fully predict the behavior of complex systems. These built-in limitations of science mean that even with endless progress, we’re unlikely to have the tools to explain everything.
 
-Science is great at answering the *how* but isn’t designed to answer *why*. Therefore, science cannot possibly be THE answer. And therefore, science can’t ever, even in theory, disprove god. In fact, there always will be a place for God. 
+Science is great at answering the *how* but isn’t designed to answer *why*. Therefore, science cannot possibly be THE answer. And therefore, science can’t ever, even in theory, disprove god. In fact, there always will be a place for God.
 
 > God Will Never Die.
 
@@ -110,19 +110,19 @@ Here is a hot take\!
 
 > Believing in divine reason is refusing to accept ignorance.
 
-With the metaphysical foundation we have constructed up to this point, we are now stepping into the epistemological discussion of “true knowledge” and whether we can have it or not. 
+With the metaphysical foundation we have constructed up to this point, we are now stepping into the epistemological discussion of “true knowledge” and whether we can have it or not.
 
 > How can we **know** anything at all?
 
 What is it to “know” something? Do you know anything? How do you know that you know what you know? [They don't know that we know they know we know\!](https://www.youtube.com/watch?v=a4CS2tCjAgk)
 
-Here is how I look at it. There is a certain limit to human comprehension. What is comprehensible is what we can understand and describe, what is not comprehensible is magic, God, love, emotions, and everything else that we refer to as spiritual, beautiful, and supernatural. 
+Here is how I look at it. There is a certain limit to human comprehension. What is comprehensible is what we can understand and describe, what is not comprehensible is magic, God, love, emotions, and everything else that we refer to as spiritual, beautiful, and supernatural.
 
 Our understanding of the world is just the interpretation of reality by our brain that is evolved to be energy efficient and survive. The keyword here is “**energy**”.
 
-Imagine being consciously aware of every single process that happens in your body, meaning you can sense individual cells, molecules, neuron signals, etc., trace their movements and interactions, and in the end correctly process and understand all that in real-time. Then there would be no mystery to you in *why* you feel a certain way at any given time. You could say: “I feel sleepy because there is not enough oxygen in my bloodstream”\! (Or something like that, you got the point.) 
+Imagine being consciously aware of every single process that happens in your body, meaning you can sense individual cells, molecules, neuron signals, etc., trace their movements and interactions, and in the end correctly process and understand all that in real-time. Then there would be no mystery to you in *why* you feel a certain way at any given time. You could say: “I feel sleepy because there is not enough oxygen in my bloodstream”\! (Or something like that, you got the point.)
 
-That sounds like a superpower, doesn’t it? However, if you were to gain such power you would probably just instantly die of exhaustion. Google says the human brain uses 20 watts of energy. That is crazy efficiency for something that managed to make Bluetooth out of dirt, sand, and stones. Especially, when comparing it with the current state-of-the-art AI technology that requires kilowatts to mimic a fraction of human intelligence ([Microsoft bought a nuclear power plant to power AI](https://techcrunch.com/2024/09/20/microsoft-taps-three-mile-island-nuclear-plant-to-power-ai/)) that efficiency is an engineering miracle. However, it is only possible thanks to the fact that we can only know so much at a time. 
+That sounds like a superpower, doesn’t it? However, if you were to gain such power you would probably just instantly die of exhaustion. Google says the human brain uses 20 watts of energy. That is crazy efficiency for something that managed to make Bluetooth out of dirt, sand, and stones. Especially, when comparing it with the current state-of-the-art AI technology that requires kilowatts to mimic a fraction of human intelligence ([Microsoft bought a nuclear power plant to power AI](https://techcrunch.com/2024/09/20/microsoft-taps-three-mile-island-nuclear-plant-to-power-ai/)) that efficiency is an engineering miracle. However, it is only possible thanks to the fact that we can only know so much at a time.
 
 In my opinion this results in an interesting implication that the emergence of consciousness and free will is the direct result of the limitation of our brain to construct the causal relationship between things happening in the world. But since it has to end somewhere personal agency is the most **efficient** way to explain it. I will talk more about it in the next article about the origins of the mind. For now, the important thing is the fact that in principle, everything is explainable within the boundaries of the common reality that we defined previously.
 
@@ -136,7 +136,7 @@ Moreover, quantum indeterminacy operates on scales that are so small that on the
 
 > There is no free will.
 
-With our current knowledge about the world, it just doesn't make sense. 
+With our current knowledge about the world, it just doesn't make sense.
 
 Even if you are not convinced by physical evidence, it doesn't even make sense by pure reason, coming from the assumption that essentialism and existentialism must both be true. Essentialism suggests that certain traits or qualities are innate—things like your genetic makeup. Existentialism, on the other hand, argues that your environment and experiences shape who you become. Both of these factors, however, are entirely out of your control. You don’t choose your genes, and you don’t choose the circumstances you’re born into or the experiences you go through.
 
@@ -145,8 +145,6 @@ Every decision you make, then, is a result of these two forces. Your preferences
 This isn’t just a philosophical claim – neuroscience supports it too. Research has shown that brain activity linked to decision-making often occurs before a person is even aware of their choice. This suggests that what feels like a conscious decision is, in reality, a reflection of processes that have already happened in your brain, shaped by your past experiences and biology.
 
 So, while the idea of free will might feel intuitive, it doesn’t hold up to scrutiny. If every choice can be traced to factors outside of your control, then what we call "free will” is merely an illusion.
-
- 
 
 > *Falling in love is not at all the most stupid thing that people do — but gravitation cannot be held responsible for it. - A. Einstein*
 
