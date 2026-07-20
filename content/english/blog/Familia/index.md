@@ -1,7 +1,7 @@
 ---
 title: "Familia"
 meta_title: "Family"
-description: "Parla più piano e nessuno sentirà, il nostro amore lo viviamo io e te. Nessuno sa la verità, Nemmeno il cielo che ci guarda da lassù."
+description: "Өмірді қиындатпасаң - қиын емес."
 date: 2026-01-05T00:01:01Z
 image: "/images/thumbnail.svg"
 categories: ["Personal"]
