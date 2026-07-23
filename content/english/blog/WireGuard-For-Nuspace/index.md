@@ -17,7 +17,7 @@ In the part 1 we have set up a simple monitoring stack that looks after our serv
 
 At the time I wrote the first post about monitoring I didn't quite understand how we did our VPN to be honest 🤠 Recently I got a chance at my internship to get more into it. Got inspired by how easy and intuitive it was on the MikroTik Smart Switch with its WinBox utility and wanted something similar on [Nuspace](https://github.com/ulanpy/nuspace/commit/8e0ce26b97a94aa84410b0af3ee2af34d716f82a). 
 
-> [Deleted production our database with no backups](https://www.linkedin.com/posts/sagyzdop_devopsjourney-operationalexcellence-failforward-share-7470533874662436864-0dix/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtUwWYB6XjFLkdk8NKglCTbGo2MK3fjFzQ) in the process by accident, but that's another story.
+> [Deleted our production database with no backups](https://www.linkedin.com/posts/sagyzdop_devopsjourney-operationalexcellence-failforward-share-7470533874662436864-0dix/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtUwWYB6XjFLkdk8NKglCTbGo2MK3fjFzQ) in the process by accident, but that's another story.
 
 Up to recently we had a headless WireGuard, which was kind of a pain to work with. Well, for a small team like ours with only me and Ulan needing direct access to the production server we only had to configure it once at the beginning. But with scalability and the prospect of handing the project down to the next generation in mind making it more convenient was a good objective. Also it's just fun to try new things. 
 
