@@ -120,7 +120,7 @@ Our university's network might block WireGuard traffic if there are multiple sim
 
 Moreover, initially we had a convenient handle at `vpn.nuspace.kz` that had links to our monitoring stack.
 
-![vpn-portal](./images/monitoring.jpeg)
+![vpn-portal](images/monitoring.jpeg)
 
 Unfortunately the newest version 15 of `wg-easy` does not support serving under subpath for some reason. So now it moved to `/monitoring`, while the root serves the `wg-easy` UI. Makes more sense this way, I guess, but you have to just know it now.
 
