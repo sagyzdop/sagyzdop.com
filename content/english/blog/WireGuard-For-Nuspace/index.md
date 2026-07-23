@@ -120,7 +120,9 @@ Our university's network might block WireGuard traffic if there are multiple sim
 
 Moreover, initially we had a convenient handle at `vpn.nuspace.kz` that had links to our monitoring stack.
 
-![](RESOURCES/Screenshot%202026-07-23%20at%2014.41.51.png)Unfortunately the newest version 15 of `wg-easy` does not support serving under subpath for some reason. So now it moved to `/monitoring`, while the root serves the `wg-easy` UI. Makes more sense this way, I guess, but you have to just know it now.
+![vpn-portal](./images/monitoring.jpeg)
+
+Unfortunately the newest version 15 of `wg-easy` does not support serving under subpath for some reason. So now it moved to `/monitoring`, while the root serves the `wg-easy` UI. Makes more sense this way, I guess, but you have to just know it now.
 
 Moreover, the unfortunate naming of "Allowed IPs" for clients caused me a lot of confusion. What it means is – "traffic to which IPs from the client is routed through the tunnel". It might as well have been called "VPN routed IPs" or something. `wg-easy` admin panel allows us to set it up, so all the newly created clients get it right away.
 
