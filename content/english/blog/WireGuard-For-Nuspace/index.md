@@ -112,7 +112,7 @@ The complete `gcloud` command looks like this (assuming default region and zone 
 gcloud compute ssh user@instance --tunnel-through-iap -- -L 51821:127.0.0.1:51821
 ```
 
-Then the UI is accessible from the browser at `localhost:51821. 
+Then the UI is accessible from the browser at `localhost:51821`. 
 
 ## More
 
