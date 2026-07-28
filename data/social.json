@@ -14,6 +14,11 @@
       "name": "linkedin",
       "icon": "fab fa-linkedin",
       "link": "https://www.linkedin.com/in/sagyzdop"
+    },
+    {
+      "name": "telegram",
+      "icon": "fab fa-telegram",
+      "link": "https://t.me/sagyzdop_blog"
     }
   ]
 }
