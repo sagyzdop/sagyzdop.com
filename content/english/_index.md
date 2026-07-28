@@ -15,6 +15,11 @@ hero:
     download: false
     # newPage: true
 
+  comment_button:
+    enable: true
+    name: "Leave a Comment"
+    url: "https://t.me/sagyzdop_blog"
+
 about:
   enable: true
   title: "About Me"
