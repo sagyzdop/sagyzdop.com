@@ -2,8 +2,7 @@
 
 # default versions
 GO_VERSION='1.24.2';
-HUGO_VERSION='0.146.5';
-
+HUGO_VERSION='0.164.0';
 echo "USING NODE VERSION: $(node -v)"
 
 # Define a local installation directory
@@ -11,7 +10,7 @@ export LOCAL_BIN_DIR="$(pwd)/.bin"
 mkdir -p "$LOCAL_BIN_DIR"
 
 # Add local bin directory to PATH for the current session
-export PATH=$PATH:"$LOCAL_BIN_DIR"
+export PATH="$LOCAL_BIN_DIR:$PATH"
 
 # install Go
 echo "Installing Go $GO_VERSION..."
@@ -19,7 +18,7 @@ curl -sSOL https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz
 # Extract Go into a subdirectory within LOCAL_BIN_DIR
 tar -C "$LOCAL_BIN_DIR" -xzf go${GO_VERSION}.linux-amd64.tar.gz
 # Add Go's specific bin directory to PATH
-export PATH=$PATH:"$LOCAL_BIN_DIR/go/bin"
+export PATH="$LOCAL_BIN_DIR/go/bin:$PATH"
 rm -rf go${GO_VERSION}.linux-amd64.tar.gz
 go version
 
