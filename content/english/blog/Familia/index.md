@@ -283,6 +283,28 @@ Which roughly translates to "Life ain't hard if you don't make it hard." This ha
 
 Happy New Year and Jingle Bells!
 
+---
+
+## P.S. August 5, 2026.
+
+So, about six months after posting this, I went home, and, you know, it's fine. 
+
+With the development of my prefrontal cortex I think I am getting to a point where I am able to look at this situation with a different reaction. I am not mad, nor scared. It's fine, as long as nobody gets hurt.
+
+Being away for so long gave me the opportunity to stop worrying about their relationship, which, honestly, I never had any business worrying about in the first place. But that's a luxury only I can afford. My siblings still at home would argue that it's impossible not to get involved when you live in that household.
+
+Anyway, it seems to have gotten much more "peaceful," I felt like. Despite everything I wrote about, I do think there is still some love between them. However, it feels more like a ceasefire than a peace treaty 🤠 
+
+They got into a stalemate, with neither party having the guts to talk about it. I think they need a therapist... And I don’t feel embarrassed on their behalf for that, they should, if they care enough. 
+
+Going back home gave me one more angle on the situation. I saw that my parents are getting old. That evoked a feeling in me that I've never felt before. All my life, they were these ever-powerful figures I could rely on. Now, that seems to be shifting. Soon, in a couple of years, I feel like I'll be the one who is more capable, more "powerful". I'll be the one to take care of them. 
+
+It has gotten to a point where it is me who is telling them to look after themselves – eat well, sleep early and exercise. I guess I am the trusted adult now 😂
+
+I am happy that I got that feeling. I love them more than anyone.
+
+Overall, I am very fortunate and grateful to have them. There are some rough edges, but it is what it is. I am who I am precisely because of who they are and what happened. I wouldn't trade them for anything.
+
 [^1]: I have a long history of writing long ass texts, and my friends joke about it.
 [^2]: I also never ask for help, even from my closest friends. It's not like I decide not to. I literally don't even have the thought. If it is something I can do myself, I do it. Or maybe it's not that deep and I've just never faced a "real problem" yet.
 [^3]: Except for motorcycles because allegedly his father died in a motorcycle accident.
