@@ -18,6 +18,9 @@
   new Swiper(".featured-posts-slider", {
     spaceBetween: 24,
     loop: true,
+    threshold: 10,
+    touchStartPreventDefault: false,
+    noSwipingSelector: "a, button",
     autoplay: {
       delay: 5000,
       disableOnInteraction: true,

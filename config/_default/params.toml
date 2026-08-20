@@ -63,7 +63,7 @@ preloader = "" # use jpg, png, svg or gif format.
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
 keywords = ["blog"]
-description = "Hugo & Tailwindcss Starter"
+description = "Bakhtiyar Yesbolsyn's personal blog"
 author = "sagyzdop"
 twitter = ""
 image = "images/og-image.png"
