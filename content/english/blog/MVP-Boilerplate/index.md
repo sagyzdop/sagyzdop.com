@@ -21,14 +21,45 @@ I see a use case for this in hackathon projects, building an MVP for startup cus
 
 This stack uses bleeding-edge tools that are gaining a lot of community support. The downside is that some links in this post will probably break over time. Please contact me if they do. Also, if there is any inconsistency, false information, or room for improvement, please let me know.
 
+> Last Updated: August 25, 2026
+
 ## Prerequisites
 
 Before you start, make sure you have:
 
-- A Cloudflare account.
-- A Google Cloud account.
-- Node.js and npm installed.
-- Basic familiarity with React and TypeScript.
+### Accounts
+
+- **Cloudflare account** – Sign up at [cloudflare.com](https://www.cloudflare.com/). The free tier is sufficient for this guide.
+- **Google Cloud account** – Sign up at [cloud.google.com](https://cloud.google.com/). You will need it to create OAuth credentials for Google Sign-In.
+
+### Software
+
+- **Node.js (v18+)** and **npm** – Install from [nodejs.org](https://nodejs.org/). Verify with:
+  ```sh
+  node --version
+  npm --version
+  ```
+- **Git** – Install from [git-scm.com](https://git-scm.com/). Verify with:
+  ```sh
+  git --version
+  ```
+
+### Knowledge
+
+- Basic familiarity with **React** and **TypeScript**.
+- Comfortable using a **terminal/command line**.
+- A **code editor** (VS Code recommended).
+
+### Google Cloud OAuth Setup
+
+You will configure this in detail later in the guide, but it helps to know what is coming:
+
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/apis/main).
+2. Configure the OAuth Consent Screen (External user type is fine for testing).
+3. Create an OAuth 2.0 Client ID (Web application type).
+4. Add authorized redirect URIs:
+   - `http://localhost:3000/api/auth/callback/google` (local development)
+   - `https://YOUR_APP_NAME.YOUR_USERNAME-cloudflare.workers.dev/api/auth/callback/google` (production)
 
 ## Cloudflare
 
@@ -102,6 +133,8 @@ Recreate types for Cloudflare bindings:
 npm run cf-typegen
 ```
 
+---
+
 ### Checkpoint Commit
 
 After scaffolding and wiring Cloudflare basics, create a checkpoint commit:
@@ -110,6 +143,8 @@ After scaffolding and wiring Cloudflare basics, create a checkpoint commit:
 git add -A
 git commit -m "chore: set up TanStack Start on Cloudflare Workers"
 ```
+
+---
 
 ## Drizzle ORM
 
@@ -139,7 +174,7 @@ Leave `schema.ts` empty for now, we will populate it with Better Auth tables lat
 ### Step 2 – Install required packages
 
 ```sh
-npm install drizzle-orm
+npm install drizzle-orm dotenv
 npm install -D drizzle-kit tsx
 ```
 
@@ -150,6 +185,7 @@ Create Drizzle config file `drizzle.config.ts` at root and configure it to work 
 ```ts
 // drizzle.config.ts
 
+import 'dotenv/config'
 import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
@@ -180,6 +216,8 @@ You can find `accountId`, `databaseId` and `token` in [Cloudflare dashboard](htt
 2. To get databaseId open D1 database you want to connect to and copy Database ID.
 3. To get token go to My profile > API Tokens and create token with D1 edit permissions.
 
+---
+
 ### Checkpoint Commit
 
 After Drizzle configuration is in place, create another checkpoint:
@@ -188,6 +226,8 @@ After Drizzle configuration is in place, create another checkpoint:
 git add -A
 git commit -m "chore: set up Drizzle D1 and migration config"
 ```
+
+---
 
 ## Google Cloud
 
@@ -208,7 +248,7 @@ If you change the base path of auth routes, update the redirect URL accordingly.
 
 Cloudflare addresses usually look like this: `https://APP_NAME.USERNAME-cloudflare.workers.dev/`. For me, it is `https://mvp-app.sagyzdop-cloudflare.workers.dev/`, so add your own domain to production redirect URIs.
 
-If you want integrations like Google Calendar, you will need additional OAuth scopes (for example `https://www.googleapis.com/auth/calendar.events`). In production, these scopes can require Google OAuth app verification before broad public use.
+If you want integrations like Google Calendar, you will need additional OAuth scopes (for example `https://www.googleapis.com/auth/calendar.events`). You can pass them in the Google provider config as shown in the auth setup, or request them later using the `linkSocial` method. In production, these scopes can require Google OAuth app verification before broad public use.
 
 ## Better Auth
 
@@ -250,13 +290,12 @@ import * as schema from '@/db/schema'
 import { env } from 'cloudflare:workers'
 
 export const auth = betterAuth({
-  baseURL: env.BETTER_AUTH_URL || 'http://localhost:3000',
+  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
   socialProviders: {
     google: {
       prompt: 'select_account',
-      scope: ['openid', 'email', 'profile', 'https://www.googleapis.com/auth/calendar.events'],
-      clientId: env.GOOGLE_CLIENT_ID as string,
-      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
   database: drizzleAdapter(
@@ -269,14 +308,14 @@ export const auth = betterAuth({
 })
 ```
 
-Why `env` here? `auth.ts` runs in the Worker runtime, where bindings and secrets are exposed through `env` from `cloudflare:workers`.
+Note the two different ways of accessing environment variables here. `process.env` is used for values that the bundler needs at build time (`baseURL`, `clientId`, `clientSecret`). `env` from `cloudflare:workers` is used for the D1 binding, which is only available at runtime inside the Worker. The `auth` object must be a direct export (not wrapped in a function) because Better Auth's framework integrations expect to import it directly.
 
 Usage example:
 
 ```ts
-import { env } from 'cloudflare:workers'
+import { auth } from '@/lib/auth/auth'
 
-const authUrl = env.BETTER_AUTH_URL
+const session = await auth.api.getSession({ headers })
 ```
 
 Notice that I am using only `Sign In with Google`. There are many more [authentication methods](https://better-auth.com/docs/installation#authentication-methods) Better Auth supports if you want something else.
@@ -338,6 +377,8 @@ export const authClient = createAuthClient({
 })
 ```
 
+---
+
 ### Checkpoint Commit
 
 After Better Auth server/client setup and auth route handler are done:
@@ -347,6 +388,8 @@ git add -A
 git commit -m "feat(auth): add Better Auth with Google and D1"
 ```
 
+---
+
 ## Integration
 
 ### Using D1
@@ -354,7 +397,7 @@ git commit -m "feat(auth): add Better Auth with Google and D1"
 Now apply the migrations using `wrangler`. First apply migrations for local dev environment with:
 
 ```sh
-npx wrangler d1 migrations apply mvp_app_d1
+npx wrangler d1 migrations apply mvp_app_d1 --local
 ```
 
 And for remote D1 (the real production database on Cloudflare) with `--remote` flag:
@@ -367,13 +410,16 @@ Change `package.json` scripts to run local dev with the database:
 
 ```json
 "scripts": {
-    "dev": "npm run build && wrangler dev --port 3000",
+    "dev": "npm run db:migrate-local && npm run build && wrangler dev --port 3000",
     "dev:vite": "vite dev",
     "build": "vite build",
     "preview": "npm run build && vite preview",
     "test": "vitest run",
     "deploy": "npm run build && wrangler deploy",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate-local": "wrangler d1 migrations apply mvp_app_d1 --local",
+    "db:migrate-remote": "wrangler d1 migrations apply mvp_app_d1 --remote"
 },
 ```
 
@@ -452,6 +498,8 @@ export interface User {
 
 This session function is handy for protecting routes.
 
+---
+
 ### Checkpoint Commit
 
 After integration and server function wiring is complete:
@@ -461,13 +509,15 @@ git add -A
 git commit -m "feat(app): add session functions and protected routes"
 ```
 
+---
+
 ## Shadcn UI
 
 Finally, the frontend. You should not sweat the UI too much when there is [Shadcn UI](https://ui.shadcn.com/docs). **Step 0 – Clear the components folder**. It should have a single `Header.tsx`. The `__root.tsx` file imports it, so delete that import. We will use the newly downloaded sidebar only for authenticated routes.
 
 ### Step 1 – Install required packages
 
-Choose what you like from [here](https://ui.shadcn.com/create), click "Create Project", pick Tanstack Start and copy the command. I'll use the default one.
+Choose what you like from [here](https://ui.shadcn.com/create), click "Create Project", pick Tanstack Start and copy the command. The `--preset` code is unique to your configuration, so generate your own. I'll use the default one.
 
 ```sh
 npx shadcn@latest init --preset b0 --template start
@@ -475,6 +525,8 @@ npx shadcn@latest add --all
 ```
 
 It will create all the necessary files, and a couple of example files that you can delete.
+
+---
 
 ### Checkpoint Commit
 
@@ -484,6 +536,8 @@ Create a checkpoint right after base shadcn setup and before downloading blocks:
 git add -A
 git commit -m "chore(ui): add base shadcn/ui setup"
 ```
+
+---
 
 ### Step 2 – Shadcn Blocks
 
@@ -513,6 +567,8 @@ nav-user.tsx
 
 They require some tweaking to work with the system we are building.
 
+---
+
 ### Checkpoint Commit
 
 Before you start customizing downloaded shadcn/template files, create a clean checkpoint that captures the generated template state and any other files changed so far:
@@ -522,42 +578,59 @@ git add -A
 git commit -m "chore(ui): save generated shadcn boilerplate files"
 ```
 
+---
+
 ### Side quest 1 – Component File Structure
 
-The first insight I got while building this project was about file management. File-based routing enforces a way to organize and name route files, but it does not say much about components. Placing and naming pages the same way as routes changed everything.
+The first insight I got while building this project was about file management. File-based routing enforces a way to organize and name route files, but it does not say much about components. I settled on a convention: each route page gets a folder under `src/components/routes/` with the same name as the route, containing an `index.tsx` that exports a `Page` component. Shared layout components live in `src/components/layouts/`.
 
-For example, the file structure for a website with login, main, and profile routes will have corresponding pages as below:
+Here is the actual structure from the repo:
 
 ```text
 src/
 ├─ components/
-│  ├─ routes/
+│  ├─ routes/                    ← mirrors src/routes/, one folder per route page
 │  │  ├─ login/
-│  │  │  └─ index.tsx
+│  │  │  └─ index.tsx           ← page component for /login
 │  │  ├─ main/
 │  │  │  ├─ components/
-│  │  │  │  └─ stats.tsx
-│  │  │  └─ index.tsx
-│  │  ├─ playground/
-│  │  │  └─ index.tsx
-│  │  └─ root/ # will be used for shared components (see below)
-│  └─ ui/ # shadcn components
+│  │  │  │  └─ stats.tsx        ← components exclusive to the main page
+│  │  │  └─ index.tsx           ← page component for /main
+│  │  └─ playground/
+│  │     └─ index.tsx           ← page component for /playground
+│  ├─ layouts/                   ← shared layout components
+│  │  └─ sidebar/
+│  │     ├─ app-sidebar.tsx
+│  │     ├─ nav-main.tsx
+│  │     ├─ nav-projects.tsx
+│  │     ├─ nav-secondary.tsx
+│  │     └─ nav-user.tsx
+│  └─ ui/                       ← shadcn components
 └─ routes/
    ├─ _authenticated/
    │  ├─ main.tsx
    │  └─ playground.tsx
    ├─ api/
    │  └─ auth/
-   │     └─ $.ts // previously created handler
+   │     └─ $.ts
    ├─ __root.tsx
    ├─ _authenticated.tsx
    ├─ index.tsx
    └─ login.tsx
 ```
 
-Notice that each route page might have its own `components` folder. That is for collocating page-exclusive components, such as `stats` on the main page shown here. Look in the repo for details: [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app).
+The mapping:
 
-I think this kind of file organization is useful. However, pages should still be composed from the basic shadcn components in `src/components/ui`.
+| Route file | Component folder | What it renders |
+|---|---|---|
+| `login.tsx` | `routes/login/index.tsx` | `Page` from login folder |
+| `_authenticated/main.tsx` | `routes/main/index.tsx` | `Page` from main folder |
+| `_authenticated/playground.tsx` | `routes/playground/index.tsx` | `Page` from playground folder |
+| `_authenticated.tsx` | `layouts/sidebar/` | Shared sidebar layout for all protected routes |
+
+`routes/` strictly mirrors `routes/` — every folder there corresponds to a route file. `layouts/` holds components shared across multiple routes (like the sidebar used by `_authenticated`). Page-exclusive components (like `stats` on the main page) go in a `components/` subfolder inside the route folder. Shared UI primitives live in `src/components/ui/`.
+
+Look in the repo for details: [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app).
 
 ### Side quest 2 – Tanstack Router and `_authenticated` Routes
 
@@ -614,7 +687,7 @@ import {
 } from '@tanstack/react-router'
 import { getUserFn } from '@/lib/user'
 import { authClient } from '@/lib/auth/auth-client'
-import { AppSidebar } from '@/components/routes/root/sidebar/app-sidebar'
+import { AppSidebar } from '@/components/layouts/sidebar/app-sidebar'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -823,7 +896,7 @@ By the end, it will look something like this:
 
 ![login](images/login.jpeg)
 
-The sidebar files (`app-sidebar.tsx`, `nav-main.tsx`, `nav-projects.tsx`, `nav-secondary.tsx`, `nav-user.tsx`) I placed under `./src/components/routes/root/sidebar`.
+The sidebar files (`app-sidebar.tsx`, `nav-main.tsx`, `nav-projects.tsx`, `nav-secondary.tsx`, `nav-user.tsx`) I placed under `./src/components/layouts/sidebar`.
 
 I added a function to handle logout, and changed the links to point to `/main` when clicking the logo and `/playground` when clicking `Playground`.
 
@@ -869,6 +942,8 @@ They look something like this:
 
 You can copy all the files from the GitHub repo ([sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app)), and examine the commit diffs if needed.
 
+---
+
 ### Checkpoint Commit
 
 After customizing shadcn/template files, route pages, and any other touched project files:
@@ -877,6 +952,8 @@ After customizing shadcn/template files, route pages, and any other touched proj
 git add -A
 git commit -m "feat(ui): customize shadcn blocks and app layout"
 ```
+
+---
 
 ## Deploy
 
@@ -916,6 +993,8 @@ npx wrangler d1 migrations apply mvp_app_d1 --remote
 
 If everything goes well, your app is live. Optionally, in Worker settings, you can give the Worker a custom domain if you own one.
 
+---
+
 ### Final Checkpoint Commit
 
 Finally, update the README and make a final checkpoint:
@@ -924,6 +1003,8 @@ Finally, update the README and make a final checkpoint:
 git add -A
 git commit -m "docs: update README and finalize MVP boilerplate guide"
 ```
+
+---
 
 That is it. Use this however you want. If you do, it would be really nice if you mention it with a link to this post somewhere in your project.
 
