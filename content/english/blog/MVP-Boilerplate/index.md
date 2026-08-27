@@ -13,83 +13,73 @@ featured: true
 
 ![thumbnail](images/thumbnail.svg)
 
-This is a guide to set up a TanStack Start application on the Cloudflare Workers platform with Google Sign-In, using Drizzle ORM, Better Auth and Shadcn UI. The best part: it is all free.
+> Last Updated: August 25, 2026
 
-Reference implementation repo: [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app).
+This is a guide to set up a TanStack Start application on the Cloudflare Workers platform with Google Sign-In, using Drizzle ORM, Better Auth and Shadcn UI. The best part: *it is all free*!
 
-I see a use case for this in hackathon projects, building an MVP for startup customer development, or small-scale projects. However, you can certainly build something bigger because Cloudflare's free tier is very generous.
+Reference implementation repo: [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate).
+
+I see a use case for this in hackathon projects, building an MVP, or creating real small-scale projects. However, you can certainly build something bigger because Cloudflare's free tier is very generous.
 
 This stack uses bleeding-edge tools that are gaining a lot of community support. The downside is that some links in this post will probably break over time. Please contact me if they do. Also, if there is any inconsistency, false information, or room for improvement, please let me know.
 
-> Last Updated: August 25, 2026
-
 ## Prerequisites
 
-Before you start, make sure you have:
-
-### Accounts
+Before you start, make sure you have the following:
 
 - **Cloudflare account** – Sign up at [cloudflare.com](https://www.cloudflare.com/). The free tier is sufficient for this guide.
-- **Google Cloud account** – Sign up at [cloud.google.com](https://cloud.google.com/). You will need it to create OAuth credentials for Google Sign-In.
-
-### Software
-
+- **Google Cloud account** – Sign up at [cloud.google.com](https://cloud.google.com/). We will use it to get OAuth credentials for Google Sign-In.
 - **Node.js (v18+)** and **npm** – Install from [nodejs.org](https://nodejs.org/). Verify with:
-  ```sh
+  ```bash
   node --version
   npm --version
   ```
 - **Git** – Install from [git-scm.com](https://git-scm.com/). Verify with:
-  ```sh
+  ```bash
   git --version
   ```
 
-### Knowledge
+> Make sure they work in your terminal and shell.
 
 - Basic familiarity with **React** and **TypeScript**.
 - Comfortable using a **terminal/command line**.
-- A **code editor** (VS Code recommended).
+- A **code editor**.
 
-### Google Cloud OAuth Setup
+If you are ready, let's go!
 
-You will configure this in detail later in the guide, but it helps to know what is coming:
-
-1. Create a project in [Google Cloud Console](https://console.cloud.google.com/apis/main).
-2. Configure the OAuth Consent Screen (External user type is fine for testing).
-3. Create an OAuth 2.0 Client ID (Web application type).
-4. Add authorized redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google` (local development)
-   - `https://YOUR_APP_NAME.YOUR_USERNAME-cloudflare.workers.dev/api/auth/callback/google` (production)
+---
 
 ## Cloudflare
 
 Cloudflare has an `npm create` command for [starting a TanStack Start application pre-configured for Cloudflare Workers](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/).
 
-```sh
+```bash
 npm create cloudflare@latest -- mvp-app --framework=tanstack-start
 ```
 
-Create `.env` and add this variable:
+Click through the defaults, we will configure what we need manually.
+
+After you see `🎉  SUCCESS  Application created successfully!` create `.env` and add this variable:
 
 ```env
 CLOUDFLARE_ACCOUNT_ID=
 ```
 
-For consistency, keep all local variables for this guide in `.env`.
+Easiest way to find it is by Search on [dash.cloudflare.com](https://dash.cloudflare.com).
 
-### Wrangler
+### Wrangler & D1 SQLite Database Binding
 
 > [Wrangler](https://developers.cloudflare.com/workers/wrangler/) is the Cloudflare Developer Platform CLI and allows you to manage Worker projects.
 
 Create a [D1 database](https://developers.cloudflare.com/d1/).
 
-```sh
+```bash
 npx wrangler@latest d1 create mvp-app-d1
 ```
 
 If you have never used Wrangler before, it will open your web browser so you can log in to your Cloudflare account.
 
-```sh
+```bash
 mvp-app % npx wrangler@latest d1 create mvp-app-d1
 Need to install the following packages:
 wrangler@4.76.0
@@ -115,7 +105,7 @@ To access your new D1 database in your Worker, add the following snippet to your
 ✔ For local dev, do you want to connect to the remote resource instead of a local resource? … no
 ```
 
-Then you should have this block added in your `wrangler.jsonc` file (`database_id` obviously will be different):
+Click through the defaults. You should have this block added in your `wrangler.jsonc` file (`database_id` obviously will be different):
 
 ```jsonc
 "d1_databases": [
@@ -129,7 +119,7 @@ Then you should have this block added in your `wrangler.jsonc` file (`database_i
 
 Recreate types for Cloudflare bindings:
 
-```sh
+```bash
 npm run cf-typegen
 ```
 
@@ -139,7 +129,7 @@ npm run cf-typegen
 
 After scaffolding and wiring Cloudflare basics, create a checkpoint commit:
 
-```sh
+```bash
 git add -A
 git commit -m "chore: set up TanStack Start on Cloudflare Workers"
 ```
@@ -158,6 +148,12 @@ There are instructions on their [website](https://orm.drizzle.team/docs/get-star
 
 Create a folder `db` under `src`. In it create two files: `index.ts` and `schema.ts`.
 
+```bash
+mkdir -p src/db && touch src/db/index.ts src/db/schema.ts
+```
+
+Copy this into `index.ts`:
+
 ```ts
 // index.ts
 
@@ -173,7 +169,7 @@ Leave `schema.ts` empty for now, we will populate it with Better Auth tables lat
 
 ### Step 2 – Install required packages
 
-```sh
+```bash
 npm install drizzle-orm dotenv
 npm install -D drizzle-kit tsx
 ```
@@ -210,11 +206,9 @@ CLOUDFLARE_DATABASE_ID=
 CLOUDFLARE_D1_TOKEN=
 ```
 
-You can find `accountId`, `databaseId` and `token` in [Cloudflare dashboard](https://dash.cloudflare.com/login?).
+You can get the database ID from previously created binding in `wrangler.jsonc`.
 
-1. To get accountId go to Workers & Pages > Overview > copy Account ID from the right sidebar.
-2. To get databaseId open D1 database you want to connect to and copy Database ID.
-3. To get token go to My profile > API Tokens and create token with D1 edit permissions.
+To get a token in [Cloudflare dashboard](https://dash.cloudflare.com/login?) go to My profile > API Tokens and create token with D1 edit permissions. You will see it only once, make sure to save it somewhere safe!
 
 ---
 
@@ -222,7 +216,7 @@ You can find `accountId`, `databaseId` and `token` in [Cloudflare dashboard](htt
 
 After Drizzle configuration is in place, create another checkpoint:
 
-```sh
+```bash
 git add -A
 git commit -m "chore: set up Drizzle D1 and migration config"
 ```
@@ -231,24 +225,21 @@ git commit -m "chore: set up Drizzle D1 and migration config"
 
 ## Google Cloud
 
-Before configuring Better Auth, get your Google OAuth credentials.
+Before configuring Better Auth, get your Google OAuth credentials. (Mainly following the [instructions from Better Auth](https://better-auth.com/docs/authentication/google).)
 
-Mainly following the [instructions from Better Auth](https://better-auth.com/docs/authentication/google).
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/apis/main).
+2. Go to APIs and Services > OAuth Consent Screen and create an OAuth configuration (choose audience "External").
+3. Create an OAuth 2.0 Client ID (choose application type "Web application").
+4. Add authorized redirect URI for local development – `http://localhost:3000/api/auth/callback/google`
 
-To use Google as a social provider, you need to create a project in the [Google Cloud Console](https://console.cloud.google.com/apis/main).
+Upon creation you will see a dialog with secrets that are meant to be shown only once. You have an option to download them as `json` file, do that if you want, just make sure to keep them safe. Add these to your `.env` file:
 
-You will first be prompted to configure Consent Screen. That part is straightforward, and there are many good guides online.
+```env
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-In the Google Cloud Console > Credentials > Authorized redirect URIs, make sure to set:
-
-- `http://localhost:3000/api/auth/callback/google` for local development
-- `https://example.com/api/auth/callback/google` for production
-
-If you change the base path of auth routes, update the redirect URL accordingly.
-
-Cloudflare addresses usually look like this: `https://APP_NAME.USERNAME-cloudflare.workers.dev/`. For me, it is `https://mvp-app.sagyzdop-cloudflare.workers.dev/`, so add your own domain to production redirect URIs.
-
-If you want integrations like Google Calendar, you will need additional OAuth scopes (for example `https://www.googleapis.com/auth/calendar.events`). You can pass them in the Google provider config as shown in the auth setup, or request them later using the `linkSocial` method. In production, these scopes can require Google OAuth app verification before broad public use.
+This should be quite straightforward, but if you have any problems there are many good guides online.
 
 ## Better Auth
 
@@ -258,7 +249,7 @@ We will mainly follow the recommendations from the [general installation guide](
 
 ### Step 1 – Install the Package
 
-```sh
+```bash
 npm install better-auth
 ```
 
@@ -269,8 +260,6 @@ Add these to `.env`
 ```env
 BETTER_AUTH_SECRET=
 BETTER_AUTH_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
 ```
 
 Generate Better Auth secret [here](https://better-auth.com/docs/installation#set-environment-variables).
@@ -278,6 +267,10 @@ Generate Better Auth secret [here](https://better-auth.com/docs/installation#set
 ### Step 3 – Create A Better Auth Instance
 
 Create `./src/lib/auth/auth.ts`:
+
+```bash
+mkdir -p src/lib/auth && touch src/lib/auth/auth.ts
+```
 
 ```ts
 // auth.ts
@@ -308,7 +301,7 @@ export const auth = betterAuth({
 })
 ```
 
-Note the two different ways of accessing environment variables here. `process.env` is used for values that the bundler needs at build time (`baseURL`, `clientId`, `clientSecret`). `env` from `cloudflare:workers` is used for the D1 binding, which is only available at runtime inside the Worker. The `auth` object must be a direct export (not wrapped in a function) because Better Auth's framework integrations expect to import it directly.
+Note the two ways of accessing environment values here. `process.env` is read for plain string secrets/vars (`clientId`, `clientSecret`); these are available at runtime on Cloudflare Workers when `nodejs_compat` is enabled, which is the default for recent compatibility dates. `env` from `cloudflare:workers` is used for `baseURL` (set it as a Worker secret) and the D1 **binding**, neither of which is a plain `process.env` value and both are only available at runtime inside the Worker. The `auth` object must be a direct export (not wrapped in a function) because Better Auth's framework integrations expect to import it directly.
 
 Usage example:
 
@@ -320,27 +313,35 @@ const session = await auth.api.getSession({ headers })
 
 Notice that I am using only `Sign In with Google`. There are many more [authentication methods](https://better-auth.com/docs/installation#authentication-methods) Better Auth supports if you want something else.
 
+Moreover, if you want integrations like Google Calendar, you will need [additional OAuth scopes](https://better-auth.com/docs/authentication/google#requesting-additional-google-scopes) (for example `https://www.googleapis.com/auth/calendar`). You have to enable corresponding APIs on the Google Cloud project, and these scopes can require Google OAuth app verification before public use.
+
 ### Step 4 – Create Database Tables
 
 This is the command to create the tables to go in the `schema.ts` I talked about earlier.
 
-```sh
+```bash
 npx auth@latest generate --config ./src/lib/auth/auth.ts
 ```
 
-It will create a `auth-schema.ts` file at root. Copy its contents into previously created `schema.ts` and delete it.
+It will create a `auth-schema.ts` file at root. **Copy** its contents into previously created `schema.ts` and **delete** it.
 
 ### Step 5 – Generate Migrations
 
 Create the migrations using Drizzle's CLI tool:
 
-```sh
+```bash
 npx drizzle-kit generate
 ```
 
 ### Step 6 – Mount Handler
 
-To handle API requests, set up a route handler on your server. For TanStack Start, create a `$.ts` file at `src/routes/api/auth/` with the following code:
+Now we do the backend. To handle API requests, set up a route handler on your server. For TanStack Start, create a `$.ts` file at `./src/routes/api/auth/` with the following code:
+
+```bash
+touch src/routes/api/auth/$.ts
+```
+
+Copy this into `$.ts`:
 
 ```ts
 // $.ts
@@ -368,6 +369,13 @@ The client-side library helps you interact with the auth server.
 
 Create `src/lib/auth/auth-client.ts`:
 
+```bash
+touch src/lib/auth/auth-client.ts
+```
+
+Copy this into `auth-client.ts`:
+
+
 ```ts
 // auth-client.ts
 
@@ -383,7 +391,7 @@ export const authClient = createAuthClient({
 
 After Better Auth server/client setup and auth route handler are done:
 
-```sh
+```bash
 git add -A
 git commit -m "feat(auth): add Better Auth with Google and D1"
 ```
@@ -396,13 +404,13 @@ git commit -m "feat(auth): add Better Auth with Google and D1"
 
 Now apply the migrations using `wrangler`. First apply migrations for local dev environment with:
 
-```sh
+```bash
 npx wrangler d1 migrations apply mvp_app_d1 --local
 ```
 
 And for remote D1 (the real production database on Cloudflare) with `--remote` flag:
 
-```sh
+```bash
 npx wrangler d1 migrations apply mvp_app_d1 --remote
 ```
 
@@ -410,32 +418,32 @@ Change `package.json` scripts to run local dev with the database:
 
 ```json
 "scripts": {
-    "dev": "npm run db:migrate-local && npm run build && wrangler dev --port 3000",
-    "dev:vite": "vite dev",
-    "build": "vite build",
-    "preview": "npm run build && vite preview",
-    "test": "vitest run",
-    "deploy": "npm run build && wrangler deploy",
-    "cf-typegen": "wrangler types",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate-local": "wrangler d1 migrations apply mvp_app_d1 --local",
-    "db:migrate-remote": "wrangler d1 migrations apply mvp_app_d1 --remote"
+  "dev": "npm run build && wrangler dev --local --port 3000",
+  "dev:vite": "vite dev",
+  "build": "vite build",
+  "preview": "npm run build && vite preview",
+  "test": "vitest run",
+  "deploy": "npm run build && wrangler deploy",
+  "cf-typegen": "wrangler types",
+  "db:generate": "drizzle-kit generate"
 },
 ```
 
-With these scripts, `npm run dev` builds the project and allows you to test D1 locally. Note that it is heavy. If you are only testing UI, use `npm run dev:vite`. I was fine using `npm run dev`, YMMV.
+With these scripts, `npm run dev` builds the project and allows you to test D1 locally. Note that it is heavy and might be slow. If you are only testing UI, use `npm run dev:vite`. For me it was fine, YMMV.
 
 ---
 
 At this point you have set up the bare bones. Let us do a midway check:
 
-```sh
+```bash
 npm run dev
 ```
 
-If everything went well, you should see the following at `localhost:3000`:
+If everything went well, you should see a template page at `localhost:3000`:
 
 ![Tanstack Start](images/midway.jpeg)
+
+> Looks might change on newer versions of TanStack.
 
 ---
 
@@ -451,6 +459,14 @@ src/
       ├─ index.ts
       └─ types.ts
 ```
+
+Create this structure:
+
+```bash
+mkdir -p src/lib/user && touch src/lib/user/{functions,index,types}.ts
+```
+
+Copy the code into corresponding files:
 
 ```ts
 // functions.ts
@@ -496,7 +512,7 @@ export interface User {
 }
 ```
 
-This session function is handy for protecting routes.
+When a page needs to know who is signed in, it calls `getUserFn`. TanStack runs this function on the server. It gives Better Auth the request headers, which contain the session cookie, and Better Auth checks whether the session is valid. The function returns the user's `id`, name, email, and image, or `null` when nobody is signed in. `types.ts` describes the returned object, and `index.ts` re-exports everything so the rest of the app can use `getUserFn` from `@/lib/user`.
 
 ---
 
@@ -504,7 +520,7 @@ This session function is handy for protecting routes.
 
 After integration and server function wiring is complete:
 
-```sh
+```bash
 git add -A
 git commit -m "feat(app): add session functions and protected routes"
 ```
@@ -513,14 +529,24 @@ git commit -m "feat(app): add session functions and protected routes"
 
 ## Shadcn UI
 
-Finally, the frontend. You should not sweat the UI too much when there is [Shadcn UI](https://ui.shadcn.com/docs). **Step 0 – Clear the components folder**. It should have a single `Header.tsx`. The `__root.tsx` file imports it, so delete that import. We will use the newly downloaded sidebar only for authenticated routes.
+Finally, the frontend. You should not sweat the UI too much when there is [Shadcn UI](https://ui.shadcn.com/docs). 
+
+### Step 0 – Delete template files
+
+Clear the `./src/components` folder, then **delete** their imports and uses from `./src/routes/__root.tsx` file.
 
 ### Step 1 – Install required packages
 
 Choose what you like from [here](https://ui.shadcn.com/create), click "Create Project", pick Tanstack Start and copy the command. The `--preset` code is unique to your configuration, so generate your own. I'll use the default one.
 
-```sh
+
+```bash
 npx shadcn@latest init --preset b0 --template start
+```
+
+You will see an interactive install. Important to type in the path to global CSS file as `src/styles.css`. Other options can be left on defaults. After this, download all shadcn primitives:
+
+```bash
 npx shadcn@latest add --all
 ```
 
@@ -532,7 +558,7 @@ It will create all the necessary files, and a couple of example files that you c
 
 Create a checkpoint right after base shadcn setup and before downloading blocks:
 
-```sh
+```bash
 git add -A
 git commit -m "chore(ui): add base shadcn/ui setup"
 ```
@@ -549,7 +575,7 @@ I used the most basic [login block](https://ui.shadcn.com/blocks/login#login-05)
 
 To download them:
 
-```sh
+```bash
 npx shadcn@latest add login-05
 npx shadcn@latest add sidebar-08
 ```
@@ -573,9 +599,9 @@ They require some tweaking to work with the system we are building.
 
 Before you start customizing downloaded shadcn/template files, create a clean checkpoint that captures the generated template state and any other files changed so far:
 
-```sh
+```bash
 git add -A
-git commit -m "chore(ui): save generated shadcn boilerplate files"
+git commit -m "chore(ui): save shadcn blocks files"
 ```
 
 ---
@@ -621,16 +647,16 @@ src/
 
 The mapping:
 
-| Route file | Component folder | What it renders |
-|---|---|---|
-| `login.tsx` | `routes/login/index.tsx` | `Page` from login folder |
-| `_authenticated/main.tsx` | `routes/main/index.tsx` | `Page` from main folder |
-| `_authenticated/playground.tsx` | `routes/playground/index.tsx` | `Page` from playground folder |
-| `_authenticated.tsx` | `layouts/sidebar/` | Shared sidebar layout for all protected routes |
+| Route file                      | Component folder              | What it renders                                |
+| ------------------------------- | ----------------------------- | ---------------------------------------------- |
+| `login.tsx`                     | `routes/login/index.tsx`      | `Page` from login folder                       |
+| `_authenticated/main.tsx`       | `routes/main/index.tsx`       | `Page` from main folder                        |
+| `_authenticated/playground.tsx` | `routes/playground/index.tsx` | `Page` from playground folder                  |
+| `_authenticated.tsx`            | `layouts/sidebar/`            | Shared sidebar layout for all protected routes |
 
 `routes/` strictly mirrors `routes/` — every folder there corresponds to a route file. `layouts/` holds components shared across multiple routes (like the sidebar used by `_authenticated`). Page-exclusive components (like `stats` on the main page) go in a `components/` subfolder inside the route folder. Shared UI primitives live in `src/components/ui/`.
 
-Look in the repo for details: [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app).
+Look in the repo for details: [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate).
 
 ### Side quest 2 – Tanstack Router and `_authenticated` Routes
 
@@ -650,7 +676,7 @@ function RouteComponent() {
 }
 ```
 
-This is generated automatically during build.
+TanStack's build step registers this file as a route automatically; you only need to create the file itself.
 
 However, this guide follows the convention of importing a `Page` function (AFAIK you can name them however you like, but stay consistent whatever you do) from an `index.tsx` located at the folder with the same name as the route, `/example` route:
 
@@ -675,6 +701,18 @@ The trick is that you create a `_authenticated.tsx` file at the root, and a fold
 
 Create/update these files under `./src/routes`:
 
+```bash
+mkdir -p src/routes/{_authenticated,api/auth} && \
+touch src/routes/_authenticated.tsx \
+      src/routes/login.tsx \
+      src/routes/_authenticated/main.tsx \
+      src/routes/_authenticated/playground.tsx \
+```
+
+Note: `src/routes/index.tsx` already exists from the TanStack Start template — overwrite it with the `index.tsx` code shown below.
+
+Copy/replace the code into corresponding files:
+
 ```tsx
 // _authenticated.tsx
 
@@ -686,7 +724,6 @@ import {
   useRouter,
 } from '@tanstack/react-router'
 import { getUserFn } from '@/lib/user'
-import { authClient } from '@/lib/auth/auth-client'
 import { AppSidebar } from '@/components/layouts/sidebar/app-sidebar'
 import {
   Breadcrumb,
@@ -700,7 +737,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from '@/components/ui/toast'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const Route = createFileRoute('/_authenticated')({
@@ -719,7 +756,6 @@ export const Route = createFileRoute('/_authenticated')({
 function AuthenticatedLayout() {
   const router = useRouter()
   const { pathname } = useLocation()
-  const { user } = Route.useRouteContext()
 
   // Added this to make the breadcrumbs work as expected
   const currentSegment = pathname.split('/').filter(Boolean).at(-1)
@@ -731,16 +767,10 @@ function AuthenticatedLayout() {
         .join(' ')
     : 'Main'
 
-  const handleLogout = async () => {
-    await authClient.signOut()
-    router.invalidate()
-    router.navigate({ to: '/login' })
-  }
-
   return (
     <TooltipProvider>
       <SidebarProvider>
-        <AppSidebar user={user} onLogout={handleLogout} />
+        <AppSidebar />
         <SidebarInset className="min-w-0">
           <header className="flex h-16 shrink-0 items-center gap-2">
             <div className="flex items-center gap-2 px-4">
@@ -818,7 +848,13 @@ function LoginPage() {
 
 ### Step 3 – Pages
 
-Rename the downloaded `login-form.tsx` to `index.tsx` and place it under `./src/components/routes/login/` This is how I changed its contents to leave only `Sign in with Google` button:
+Rename the downloaded `login-form.tsx` to `index.tsx` and place it under `./src/components/routes/login/`:
+
+```bash
+mkdir -p src/components/routes/login
+```
+
+This is how I changed its contents to leave only `Sign in with Google` button:
 
 ```tsx
 // index.tsx
@@ -896,9 +932,24 @@ By the end, it will look something like this:
 
 ![login](images/login.jpeg)
 
-The sidebar files (`app-sidebar.tsx`, `nav-main.tsx`, `nav-projects.tsx`, `nav-secondary.tsx`, `nav-user.tsx`) I placed under `./src/components/layouts/sidebar`.
+We will show the sidebar only in authenticated routes. The sidebar files (`app-sidebar.tsx`, `nav-main.tsx`, `nav-projects.tsx`, `nav-secondary.tsx`, `nav-user.tsx`) I placed under `./src/components/layouts/sidebar`.
 
-I added a function to handle logout, and changed the links to point to `/main` when clicking the logo and `/playground` when clicking `Playground`.
+```bash
+mkdir -p src/components/layouts/sidebar
+```
+
+I added a function to handle logout, and changed the links to point to `/main` when clicking the logo and `/playground` when clicking `Playground`. To make this work you have to copy the edited sidebar files.
+
+I also added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` placeholder page component files as discussed before. 
+
+```bash
+mkdir -p src/components/routes/main/components && \
+touch src/components/routes/main/index.tsx src/components/routes/main/components/stats.tsx && \
+mkdir -p src/components/routes/playground && \
+touch src/components/routes/playground/index.tsx
+```
+
+You can copy these files from the GitHub repo – [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate) – and examine the commit diffs if needed.
 
 The route files (under `./src/routes/_authenticated`) look like this:
 
@@ -932,15 +983,11 @@ function PlaygroundPage() {
 }
 ```
 
-I also added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` placeholder page component files as discussed before.
-
 They look something like this:
 
 ![main](images/main.jpeg)
 
 ![playground](images/playground.jpeg)
-
-You can copy all the files from the GitHub repo ([sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app)), and examine the commit diffs if needed.
 
 ---
 
@@ -948,7 +995,7 @@ You can copy all the files from the GitHub repo ([sagyzdop/mvp-app](https://gith
 
 After customizing shadcn/template files, route pages, and any other touched project files:
 
-```sh
+```bash
 git add -A
 git commit -m "feat(ui): customize shadcn blocks and app layout"
 ```
@@ -957,41 +1004,35 @@ git commit -m "feat(ui): customize shadcn blocks and app layout"
 
 ## Deploy
 
+
 ### Step 1 – Create the Worker from GitHub
 
-Workers support automatic deploy on push to GitHub, and I recommend using that first. Push your code to GitHub (for example, [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app)), then go to `dash.cloudflare.com`, Compute > Workers & Pages > Continue with GitHub and select the repository from your GitHub account.
+Workers support automatic deploy on push to GitHub, and I recommend using that first. Push your code to GitHub (for example, [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate)), then go to `dash.cloudflare.com`, Compute > Workers & Pages > Continue with GitHub and select the repository from your GitHub account.
 
 Set a **Project name**. Delete the **Build command** and leave it empty. Change the **Deploy command** to `npm run deploy`. Click deploy and wait.
 
-This first deploy creates the Worker resource. After that, you can add production secrets in UI or with Wrangler CLI.
+This first deploy creates the Worker resource. If everything went well, from "Domains" tab of your worker you need to activate a production domain (or add your custom domain, you can buy from Cloudflare itself). Copy it, we will need it in the next step.
 
-### Step 2 – Add Environment Variables to Production
+### Step 2 - Update Google Cloud Credentials
 
-After the Worker exists, add secrets from the Worker web UI or by `npx wrangler secret put` command. To avoid typing every secret by hand, you can use this:
+We need to add the copied production address to authorized redirect URIs list we edited at the very beginning – `https://YOUR_CLOUDFLARE_DOMAIN_NAME/api/auth/callback/google`.
 
-```sh
-echo "your_secret_here" | npx wrangler secret put BETTER_AUTH_SECRET && \
-echo "your_secret_here" | npx wrangler secret put BETTER_AUTH_URL && \
-echo "your_secret_here" | npx wrangler secret put CLOUDFLARE_ACCOUNT_ID && \
-echo "your_secret_here" | npx wrangler secret put CLOUDFLARE_DATABASE_ID && \
-echo "your_secret_here" | npx wrangler secret put CLOUDFLARE_D1_TOKEN && \
-echo "your_secret_here" | npx wrangler secret put GOOGLE_CLIENT_ID && \
-echo "your_secret_here" | npx wrangler secret put GOOGLE_CLIENT_SECRET
-```
 
-Important: put your domain name into `BETTER_AUTH_URL`, for example `https://mvp-app.sagyzdop-cloudflare.workers.dev`, **NOT** `http://localhost:3000`.
+### Step 3 – Add Environment Variables to Production
 
-If you are using the UI, add the same keys under Worker Settings > Variables and Secrets.
+After the Worker exists, add secrets from the Worker web UI or by `npx wrangler secret put` command. Important: put your domain name into `BETTER_AUTH_URL`, for example `https://mvp-app.sagyzdop-cloudflare.workers.dev`, **NOT** `http://localhost:3000`.
 
-### Step 3 – Apply Production Migrations
+You can also add the same keys using the UI.
+
+### Step 4 – Apply Production Migrations
 
 Before first production login, apply migrations remotely if you haven't already:
 
-```sh
+```bash
 npx wrangler d1 migrations apply mvp_app_d1 --remote
 ```
 
-If everything goes well, your app is live. Optionally, in Worker settings, you can give the Worker a custom domain if you own one.
+If everything goes well, your app is live.
 
 ---
 
@@ -999,18 +1040,18 @@ If everything goes well, your app is live. Optionally, in Worker settings, you c
 
 Finally, update the README and make a final checkpoint:
 
-```sh
+```bash
 git add -A
 git commit -m "docs: update README and finalize MVP boilerplate guide"
 ```
 
 ---
 
-That is it. Use this however you want. If you do, it would be really nice if you mention it with a link to this post somewhere in your project.
+That is it. Use this however you want. If you do, it would be really nice if you mention it with a link to this post somewhere in your project 😉
 
-Live version at [mvp-app.sagyzdop-cloudflare.workers.dev](https://mvp-app.sagyzdop-cloudflare.workers.dev).
+Live demo at [mvp-app-boilerplate.sagyzdop-cloudflare.workers.dev](https://mvp-app-boilerplate.sagyzdop-cloudflare.workers.dev).
 
-GitHub repo: [sagyzdop/mvp-app](https://github.com/sagyzdop/mvp-app).
+GitHub repo: [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate).
 
 ***Happy building!***
 
