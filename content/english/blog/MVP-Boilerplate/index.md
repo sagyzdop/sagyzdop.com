@@ -940,19 +940,6 @@ We will show the sidebar only in authenticated routes. The sidebar files (`app-s
 mkdir -p src/components/layouts/sidebar
 ```
 
-I added a function to handle logout, and changed the links to point to `/main` when clicking the logo and `/playground` when clicking `Playground`. To make this work you have to copy the edited sidebar files.
-
-I also added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` placeholder page component files as discussed before. 
-
-```bash
-mkdir -p src/components/routes/main/components && \
-touch src/components/routes/main/index.tsx src/components/routes/main/components/stats.tsx && \
-mkdir -p src/components/routes/playground && \
-touch src/components/routes/playground/index.tsx
-```
-
-You can copy these files from the GitHub repo – [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate) – and examine the commit diffs if needed.
-
 The route files (under `./src/routes/_authenticated`) look like this:
 
 ```tsx
@@ -985,11 +972,15 @@ function PlaygroundPage() {
 }
 ```
 
+I added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` page component files as discussed before. Copy them from the GitHub repo – [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate)
+
 They look something like this:
 
 ![main](images/main.jpeg)
 
 ![playground](images/playground.jpeg)
+
+I also added a function to handle logout, and navigation to `/main` and `/playground` pages. To make this work you can copy the edited sidebar files from the repo and examine the commit diffs if needed. (Or leave it as an exercise for your AI agent 🤠)
 
 ---
 
