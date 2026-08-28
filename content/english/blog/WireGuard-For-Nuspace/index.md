@@ -92,7 +92,7 @@ In this context we use it for generating the very first WireGuard configs. `wg-e
     allow 10.13.13.0/24; # WireGuard clients
     deny all;
     
-    # wg-easy Web UI — served at root since it doesn't support sub-paths
+    # wg-easy Web UI – served at root since it doesn't support sub-paths
     location / {
       proxy_pass http://wg-easy:51821/;
       proxy_http_version 1.1;

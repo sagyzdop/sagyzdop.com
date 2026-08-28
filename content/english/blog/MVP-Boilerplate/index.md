@@ -301,7 +301,9 @@ export const auth = betterAuth({
 })
 ```
 
-Note the two ways of accessing environment values here. `process.env` is read for plain string secrets/vars (`clientId`, `clientSecret`); these are available at runtime on Cloudflare Workers when `nodejs_compat` is enabled, which is the default for recent compatibility dates. `env` from `cloudflare:workers` is used for `baseURL` (set it as a Worker secret) and the D1 **binding**, neither of which is a plain `process.env` value and both are only available at runtime inside the Worker. The `auth` object must be a direct export (not wrapped in a function) because Better Auth's framework integrations expect to import it directly.
+Note the two ways of accessing environment values here. `process.env` is read for plain string secrets/vars (`clientId`, `clientSecret`). They are available at runtime on Cloudflare Workers when `nodejs_compat` is enabled, which is the default for recent compatibility dates. 
+
+`env` from `cloudflare:workers` is used for `baseURL` (set it as a Worker secret) and the D1 **binding**, neither of which is a plain `process.env` value and both are only available at runtime inside the Worker. The `auth` object must be a direct export (not wrapped in a function) because Better Auth's framework integrations expect to import it directly.
 
 Usage example:
 
@@ -654,7 +656,7 @@ The mapping:
 | `_authenticated/playground.tsx` | `routes/playground/index.tsx` | `Page` from playground folder                  |
 | `_authenticated.tsx`            | `layouts/sidebar/`            | Shared sidebar layout for all protected routes |
 
-`routes/` strictly mirrors `routes/` — every folder there corresponds to a route file. `layouts/` holds components shared across multiple routes (like the sidebar used by `_authenticated`). Page-exclusive components (like `stats` on the main page) go in a `components/` subfolder inside the route folder. Shared UI primitives live in `src/components/ui/`.
+`routes/` strictly mirrors `routes/` – every folder there corresponds to a route file. `layouts/` holds components shared across multiple routes (like the sidebar used by `_authenticated`). Page-exclusive components (like `stats` on the main page) go in a `components/` subfolder inside the route folder. Shared UI primitives live in `src/components/ui/`.
 
 Look in the repo for details: [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate).
 
@@ -676,7 +678,7 @@ function RouteComponent() {
 }
 ```
 
-TanStack's build step registers this file as a route automatically; you only need to create the file itself.
+TanStack's build step registers this file as a route automatically, you only need to create the file itself.
 
 However, this guide follows the convention of importing a `Page` function (AFAIK you can name them however you like, but stay consistent whatever you do) from an `index.tsx` located at the folder with the same name as the route, `/example` route:
 
@@ -709,7 +711,7 @@ touch src/routes/_authenticated.tsx \
       src/routes/_authenticated/playground.tsx \
 ```
 
-Note: `src/routes/index.tsx` already exists from the TanStack Start template — overwrite it with the `index.tsx` code shown below.
+Note: `src/routes/index.tsx` already exists from the TanStack Start template – overwrite it with the `index.tsx` code shown below.
 
 Copy/replace the code into corresponding files:
 
@@ -1022,7 +1024,7 @@ We need to add the copied production address to authorized redirect URIs list we
 
 After the Worker exists, add secrets from the Worker web UI or by `npx wrangler secret put` command. Important: put your domain name into `BETTER_AUTH_URL`, for example `https://mvp-app.sagyzdop-cloudflare.workers.dev`, **NOT** `http://localhost:3000`.
 
-You can also add the same keys using the UI.
+You can also add the same keys from the web dashboard.
 
 ### Step 4 – Apply Production Migrations
 

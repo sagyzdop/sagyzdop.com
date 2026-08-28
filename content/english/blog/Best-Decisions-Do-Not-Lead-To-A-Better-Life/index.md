@@ -139,7 +139,7 @@ This illusionary time-induced stress disconnects from the present moment, and fr
 
 McGinnis [says](https://www.nytimes.com/2018/07/30/smarter-living/how-to-beat-fobo-from-the-expert-who-coined-it.html):
 
-> FOBO is also driven by narcissism. People with F.O.B.O. put themselves and their needs and wants squarely around the people around them — all of the people who are adversely affected by their F.O.B.O.
+> FOBO is also driven by narcissism. People with F.O.B.O. put themselves and their needs and wants squarely around the people around them – all of the people who are adversely affected by their F.O.B.O.
 
 I can see where is this coming from. This optimizing mindset, supported by capitalism, creates a consumerist look at everything in your life, and unfortunately, at people too. At any point, you might be calculating "What can I get out of this person?". The worst part is that it is celebrated in our society and even has a name – networking. I want to call it "LinkedIn syndrome" – a worldview that emerged and spread only because our lives have become a pursuit of maximizing gain and minimizing loss as much as we can.
 

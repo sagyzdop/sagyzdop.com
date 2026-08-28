@@ -138,7 +138,7 @@ Moreover, quantum indeterminacy operates on scales that are so small that on the
 
 With our current knowledge about the world, it just doesn't make sense.
 
-Even if you are not convinced by physical evidence, it doesn't even make sense by pure reason, coming from the assumption that essentialism and existentialism must both be true. Essentialism suggests that certain traits or qualities are innate—things like your genetic makeup. Existentialism, on the other hand, argues that your environment and experiences shape who you become. Both of these factors, however, are entirely out of your control. You don’t choose your genes, and you don’t choose the circumstances you’re born into or the experiences you go through.
+Even if you are not convinced by physical evidence, it doesn't even make sense by pure reason, coming from the assumption that essentialism and existentialism must both be true. Essentialism suggests that certain traits or qualities are innate – things like your genetic makeup. Existentialism, on the other hand, argues that your environment and experiences shape who you become. Both of these factors, however, are entirely out of your control. You don’t choose your genes, and you don’t choose the circumstances you’re born into or the experiences you go through.
 
 Every decision you make, then, is a result of these two forces. Your preferences, fears, habits, and even the way you weigh options are determined by your biology and environment. When you decide what to eat, it might feel like a choice, but it’s influenced by a mix of genetic predispositions (like your taste preferences) and environmental factors (like what’s available or culturally familiar). The same principle applies to more complex decisions, like choosing a career or a partner. Every step in your decision-making process can be traced back to factors you didn’t and couldn’t control.
 
@@ -146,7 +146,7 @@ This isn’t just a philosophical claim – neuroscience supports it too. Resear
 
 So, while the idea of free will might feel intuitive, it doesn’t hold up to scrutiny. If every choice can be traced to factors outside of your control, then what we call "free will” is merely an illusion.
 
-> *Falling in love is not at all the most stupid thing that people do — but gravitation cannot be held responsible for it. - A. Einstein*
+> *Falling in love is not at all the most stupid thing that people do – but gravitation cannot be held responsible for it. - A. Einstein*
 
 I think he is wrong. Ironically, the reason for it is Einstein's own theory. As I mentioned above, our best theories imply that the world is deterministic, and even if it isn't – we can't control it. In such a world, there is nothing we can do to change its course.
 

@@ -108,7 +108,7 @@ Some meanings cannot be built from descriptions, no matter how precise or detail
 
 The remaining three cells of the table follow the same logic, and each is worth a moment.
 
-Some underivable concepts are simply not load-bearing. A specific shade of blue has to be experienced to be known — no description will produce it — but the brain's model functions perfectly without it. You could live an entire life without ever encountering that particular hue and lose nothing foundational. These are the concepts in the top-right cell: experientially irreplaceable for those who have them, but not structural requirements of the model itself.
+Some underivable concepts are simply not load-bearing. A specific shade of blue has to be experienced to be known – no description will produce it – but the brain's model functions perfectly without it. You could live an entire life without ever encountering that particular hue and lose nothing foundational. These are the concepts in the top-right cell: experientially irreplaceable for those who have them, but not structural requirements of the model itself.
 
 Then there are concepts that are essential but don't require direct experience to form. "Justice" or "object permanence" can be built from descriptions, from language pointing at other concepts, from reasoning about things you have never directly perceived or experienced. Nevertheless, they are essential because you could argue that to effectively function as a human being you probably need those concepts in your model.
 
@@ -165,7 +165,7 @@ To avoid confusion I want to make some useful distinction that the English langu
 
 I suggest using the verb (to) **experience** for the act of passive interpretation of **emotion**, as we use (to) see and (to) hear. Similarly, the verb (to) **feel** for the act of active interpretation of emotion as we use (to) look and (to) listen. Hence, the noun (a) feeling becomes the meaning that we assign to a certain emotion(s).
 
-Consequently, an emotion becomes a piece of information—like light or sound—that we can experience or feel.
+Consequently, an emotion becomes a piece of information – like light or sound – that we can experience or feel.
 
 Notice that the output arrow loops back to the top of the diagram. The brain makes sure not only to respond to the stimuli, your behavior changes the stimuli you receive next, which updates the model, which changes the next prediction. The brain is not merely reacting – it is constantly acting on the world to make the world match its predictions.
 

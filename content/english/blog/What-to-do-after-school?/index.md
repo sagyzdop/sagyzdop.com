@@ -16,9 +16,9 @@ I've always felt a sense of admiration and envy towards people who knew what the
 
 > Who do you want to be when you grow up?
 
-This is a question we were all asked at some point in our childhood, with answers ranging from teachers and doctors to more delusional ones like *Spider-Man* or something. Usually, those choices are influenced by what we're exposed to. It can be parents, friends, or someone you admire. It could also be the movies you've seen, the books you've read, stories you've been told, or the experiences you've gone through — really, all sorts of things.
+This is a question we were all asked at some point in our childhood, with answers ranging from teachers and doctors to more delusional ones like *Spider-Man* or something. Usually, those choices are influenced by what we're exposed to. It can be parents, friends, or someone you admire. It could also be the movies you've seen, the books you've read, stories you've been told, or the experiences you've gone through – really, all sorts of things.
 
-When no mama is singing you back to sleep no more, you realize that you actually have to work! And now the question is — how do you get a job? [^what-kind-of-job] This is how I've imagined it so far.
+When no mama is singing you back to sleep no more, you realize that you actually have to work! And now the question is – how do you get a job? [^what-kind-of-job] This is how I've imagined it so far.
 
 First, you try something out of pure interest. Then, if you like it and you're good at it – you concentrate on that thing and get better at it. As you get older, you look for career opportunities that you can base on this passion of yours. You search for universities that offer programs in your area of interest and apply. If everything goes well, that's how you get specialized and get a job.[^entrepreneurship]
 
