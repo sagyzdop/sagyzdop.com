@@ -341,7 +341,7 @@ npx drizzle-kit generate
 Now we do the backend. To handle API requests, set up a route handler on your server. For TanStack Start, create a `$.ts` file at `./src/routes/api/auth/` with the following code:
 
 ```bash
-touch src/routes/api/auth/$.ts
+mkdir -p src/routes/api/auth && touch src/routes/api/auth/\$.ts
 ```
 
 Copy this into `$.ts`:
