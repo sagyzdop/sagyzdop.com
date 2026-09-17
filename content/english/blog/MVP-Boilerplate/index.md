@@ -709,7 +709,7 @@ mkdir -p src/routes/{_authenticated,api/auth} && \
 touch src/routes/_authenticated.tsx \
       src/routes/login.tsx \
       src/routes/_authenticated/main.tsx \
-      src/routes/_authenticated/playground.tsx \
+      src/routes/_authenticated/playground.tsx
 ```
 
 Note: `src/routes/index.tsx` already exists from the TanStack Start template – overwrite it with the `index.tsx` code shown below.
