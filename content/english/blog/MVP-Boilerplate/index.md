@@ -973,7 +973,16 @@ function PlaygroundPage() {
 }
 ```
 
-I added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` page component files as discussed before. Copy them from the GitHub repo – [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate)
+I added corresponding `./src/components/routes/main/index.tsx` and `./src/components/routes/playground/index.tsx` page component files as discussed before. 
+
+```bash
+mkdir -p ./src/components/routes/main/components ./src/components/routes/playground && \
+touch ./src/components/routes/main/index.tsx \
+      ./src/components/routes/main/components/stats.tsx \
+      ./src/components/routes/playground/index.tsx
+```
+
+Copy the code from the GitHub repo – [sagyzdop/mvp-app-boilerplate](https://github.com/sagyzdop/mvp-app-boilerplate)
 
 They look something like this:
 
