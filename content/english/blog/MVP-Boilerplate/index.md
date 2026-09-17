@@ -27,17 +27,18 @@ This stack uses bleeding-edge tools that are gaining a lot of community support.
 
 Before you start, make sure you have the following:
 
+- **GitHub account** – Sign up at [github.com](https://github.com).
 - **Cloudflare account** – Sign up at [cloudflare.com](https://www.cloudflare.com/). The free tier is sufficient for this guide.
 - **Google Cloud account** – Sign up at [cloud.google.com](https://cloud.google.com/). We will use it to get OAuth credentials for Google Sign-In.
 - **Node.js (v18+)** and **npm** – Install from [nodejs.org](https://nodejs.org/). Verify with:
-  ```bash
-  node --version
-  npm --version
-  ```
+```bash
+node --version
+npm --version
+```
 - **Git** – Install from [git-scm.com](https://git-scm.com/). Verify with:
-  ```bash
-  git --version
-  ```
+```bash
+git --version
+```
 
 > Make sure they work in your terminal and shell.
 

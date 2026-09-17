@@ -1,0 +1,16 @@
+{{- $opts := dict }}
+{{- if not (transform.CanHighlight .Type) }}
+  {{- $opts = dict "type" "text" }}
+{{- end }}
+{{- $result := transform.HighlightCodeBlock . $opts }}
+<div class="code-block">
+  <div class="code-header">
+    <button type="button" class="code-copy-btn" data-lang="{{ .Type }}" data-code="{{ .Inner }}">
+      <span class="code-copy-lang"></span>
+      <span class="code-copy-ok">Copied!</span>
+    </button>
+  </div>
+  {{- with $result -}}
+    {{ .Wrapped }}
+  {{- end -}}
+</div>

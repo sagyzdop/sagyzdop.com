@@ -150,6 +150,9 @@ lazy = true
 [[params.plugins.css]]
 link = "plugins/font-awesome/v6/icons.css"
 lazy = true
+[[params.plugins.css]]
+link = "css/code-copy.css"
+lazy = false
 
 # JS Plugins
 [[params.plugins.js]]
@@ -179,3 +182,6 @@ lazy = true
 [[params.plugins.js]]
 link = "plugins/youtube-lite.js"
 lazy = true
+[[params.plugins.js]]
+link = "js/code-copy.js"
+lazy = false
